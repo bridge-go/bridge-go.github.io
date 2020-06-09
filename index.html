@@ -76,6 +76,113 @@
     
     
     
+    <article id="post-WSL-Windows-Terminal打造Win端开发环境" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+    >WSL + Windows Terminal打造Win端最强终端</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2020-06-09T12:40:41.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System/">System</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>原因：</p>
+<ul>
+<li><p>需求-想要在Linux下开发程序（至少有一个正常的linux环境用于试验）；</p>
+</li>
+<li><p>尝试-VMware虚拟机装Ubuntu20,Ubuntu18, 两个版本都遇到大小写切换问题，试了很多方法，无法解决。应该是虚拟机软件问题。</p>
+</li>
+<li><p>初见-WSL(Window Subsystem for Linux)环境安装Ubuntu 20.04 LTS版本，但在安装build-essential时始终无法解决层层嵌套的依赖问题，卸载！</p>
+</li>
+<li><p>完成-WSL安装Ubuntu 18.04 LTS版本后顺利完成各项配置</p>
+</li>
+</ul>
+<p>Window Terminal虽然还处理beta版本，但是功能够用，美观程度尚可。简单配置后配合WSL可以作为window的最强终端。这得益于WSL的应用是系统级的，不局限于Ubuntu的home目录。</p>
+</blockquote>
+<p>参考：<a href="https://printempw.github.io/wsl-guide/" target="_blank" rel="noopener">WSL配置指北</a></p>
+      
+      <a class="article-more-link" href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/" rel="tag">WSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-Terminal/" rel="tag">Windows Terminal</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-linux-command" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -137,48 +244,9 @@
 <p><code>du -sh folderName</code>: 返回该目录的大小</p>
 <p><code>du -h folderName</code>: 查看指定文件夹下的所有文件大小（包含子文件夹）</p>
 </blockquote>
-<h4 id="df"><a href="#df" class="headerlink" title="df"></a>df</h4><p><code>df</code> 以磁盘分区为单位查看文件系统，可以获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</p>
-<p>例如，我们使用<strong>df -h</strong>命令来查看磁盘信息， <strong>-h</strong> 选项为根据大小适当显示：</p>
-<p>显示内容参数说明：</p>
-<ul>
-<li><strong>Filesystem</strong>：文件系统</li>
-<li><strong>Size</strong>： 分区大小</li>
-<li><strong>Used</strong>： 已使用容量</li>
-<li><strong>Avail</strong>： 还可以使用的容量</li>
-<li><strong>Use%</strong>： 已用百分比</li>
-<li><strong>Mounted on</strong>： 挂载点　</li>
-</ul>
-<p><strong>相关命令：</strong></p>
-<ul>
-<li><strong>df -hl</strong>：查看磁盘剩余空间</li>
-<li><strong>df -h</strong>：查看每个根路径的分区大小</li>
-<li><strong>du -sh [目录名]</strong>：返回该目录的大小</li>
-<li><strong>du -sm [文件夹]</strong>：返回该文件夹总M数</li>
-<li><strong>du -h [目录名]</strong>：查看指定文件夹下的所有文件大小（包含子文件夹）</li>
-</ul>
-<hr>
-<h4 id="du"><a href="#du" class="headerlink" title="du"></a>du</h4><p><code>du</code> 的英文原义为 <strong>disk usage</strong>，含义为显示磁盘空间的使用情况，用于查看当前目录的总大小。</p>
-<p>例如查看当前目录的大小：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># du -sh</span><br><span class="line">605M    .</span><br></pre></td></tr></table></figure>
-
-<p>显示指定文件所占空间：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># du log2012.log </span><br><span class="line">300     log2012.log</span><br></pre></td></tr></table></figure>
-
-<p>方便阅读的格式显示test目录所占空间情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># du -h test</span><br><span class="line">608K    test&#x2F;test6</span><br><span class="line">308K    test&#x2F;test4</span><br><span class="line">4.0K    test&#x2F;scf&#x2F;lib</span><br></pre></td></tr></table></figure>
-
-<p>du 命令用于查看当前目录的总大小：</p>
-<ul>
-<li><strong>-s</strong>：对每个Names参数只给出占用的数据块总数。</li>
-<li><strong>-a</strong>：递归地显示指定目录中各文件及子目录中各文件占用的数据块数。若既不指定-s，也不指定-a，则只显示Names中的每一个目录及其中的各子目录所占的磁盘块数。</li>
-<li><strong>-b</strong>：以字节为单位列出磁盘空间使用情况（系统默认以k字节为单位）。</li>
-<li><strong>-k</strong>：以1024字节为单位列出磁盘空间使用情况。</li>
-<li><strong>-c</strong>：最后再加上一个总计（系统默认设置）。</li>
-<li><strong>-l</strong>：计算所有的文件大小，对硬链接文件，则计算多次。</li>
-<li><strong>-x</strong>：跳过在不同文件系统上的目录不予统计。</li>
-<li><strong>-h</strong>：以K，M，G为单位，提高信息的可读性。</li>
-</ul>
-
+      
+      <a class="article-more-link" href="/2020/05/16/linux-command/">阅读更多...</a>
+      
       
       <!-- reward -->
       
@@ -242,7 +310,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">73</span>
+            <span class="post-count">72</span>
         </span>
     </span>
 
