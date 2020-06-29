@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    MATLAB Import and Export |  Kewei
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516140406.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-MATLAB-Import-and-Export" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  MATLAB Import and Export
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/27/MATLAB-Import-and-Export/" class="article-date">
+  <time datetime="2020-06-27T08:11:29.000Z" itemprop="datePublished">2020-06-27</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="MATLAB-mat文件"><a href="#MATLAB-mat文件" class="headerlink" title="MATLAB.mat文件"></a>MATLAB<code>.mat</code>文件</h2><table>
+<thead>
+<tr>
+<th>File Content</th>
+<th>Extension</th>
+<th>Description</th>
+<th>Import Function</th>
+<th>Export Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MATLAB formatted data</td>
+<td>.mat</td>
+<td>保存或加载工作区变量</td>
+<td>load</td>
+<td>save</td>
+</tr>
+<tr>
+<td>MATLAB formatted data</td>
+<td>.mat</td>
+<td>不打开mat文件的情况下，保存或加载部分工作区变量</td>
+<td>matfile</td>
+<td>matfile</td>
+</tr>
+</tbody></table>
+<h3 id="load函数"><a href="#load函数" class="headerlink" title="load函数"></a><code>load</code>函数</h3><p><code>load(filename)</code> 从 <code>filename</code> 加载数据。可以加载 MAT 文件和 ASCII 文件，用于导入文本文件时需要制定<code>-ascii</code>且其内容为数组格式，对于普通文本可能并不适用。</p>
+<p><code>load(filename,variables)</code> 加载 MAT 文件 <code>filename</code> 中的指定变量。</p>
+<p><code>load(filename,&#39;-ascii&#39;)</code> 将 <code>filename</code> 视为 ASCII 文件，而不管文件扩展名如何。</p>
+<p><code>load(filename,&#39;-mat&#39;)</code> 将 <code>filename</code> 视为 MAT 文件，而不管文件扩展名如何。</p>
+<p><code>load(filename,&#39;-mat&#39;,variables)</code> 加载 <code>filename</code> 中的指定变量。</p>
+<p><code>S = load(___)</code> 使用前面语法组中的任意输入参数将数据加载到 <code>S</code> 中， S 是结构体数组，可以用S.varName引用变量</p>
+<ul>
+<li>如果 <code>filename</code> 是 MAT 文件，则 <code>S</code> 是<strong>结构体数组</strong>。</li>
+<li>如果 <code>filename</code> 是 ASCII 文件，则 <code>S</code> 是包含该文件数据的双精度数组。</li>
+</ul>
+<p>命令形式：</p>
+<p><code>load filename</code> 是该语法的命令形式。直接利用空格间隔各项参数，适用于filename不是变量或字符串的情况。</p>
+<p>例如，要加载名为 <code>durer.mat</code> 的文件，以下语句是等效的：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load durer.mat      <span class="comment">% 加载文件内所有变量</span></span><br><span class="line">load durer.mat X	<span class="comment">% 加载X变量</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="save函数"><a href="#save函数" class="headerlink" title="save函数"></a><code>save</code>函数</h3><p><code>save(filename)</code> 将当前工作区中的所有变量保存在 MATLAB格式的二进制文件（MAT 文件）<code>filename</code> 中。如果 <code>filename</code> 已存在，<code>save</code> 会覆盖该文件。</p>
+<p><code>save(filename,variables)</code> 仅保存 <code>variables</code> 指定的结构体数组的变量或字段。</p>
+<p><code>save(filename,variables,fmt)</code> 以 <code>fmt</code> 指定的文件格式保存。<code>variables</code> 参数为可选参数。如果您不指定 <code>variables</code>，<code>save</code> 函数将保存工作区中的所有变量。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save(<span class="string">'rawData.txt'</span>, <span class="string">'-ascii'</span>) <span class="comment">% 将数据导出至文本的最简单办法，需要数据为数组格式</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>save(filename,variables,&#39;-append&#39;)</code> 将新变量添加到一个现有文件中。如果 MAT 文件中已经存在变量，则 <code>save</code> 会使用工作区中的值覆盖它。对于 ASCII 文件，<code>&#39;-append&#39;</code> 会将数据添加到文件末尾。</p>
+<p><code>save filename</code> 是命令形式的语法。与<code>load</code>函数类似</p>
+<h3 id="matfile函数"><a href="#matfile函数" class="headerlink" title="matfile函数"></a><code>matfile</code>函数</h3><blockquote>
+<p>直接访问和更改 MAT 文件中的变量，而不加载到内存中 </p>
+</blockquote>
+<p><code>m = matfile(filename)</code> 创建 MAT 文件对象 <code>m</code>，该对象连接到名为 <code>filename</code> 的 MAT 文件。该对象允许您直接访问和更改 MAT 文件中的变量，而不必将变量加载到内存中。</p>
+<p><code>matfile</code> 函数提供的部分加载和保存所需的内存比 <code>load</code> 和 <code>save</code> 命令少，因为后两者始终处理全部变量。</p>
+<p><code>m = matfile(filename,&#39;Writable&#39;,isWritable)</code> 启用或禁用对文件的写入访问权限。</p>
+<p>对于整体数据文件非常大的情况很有用，但是目前没有这个需求，需要时查看<code>matfile</code>函数文档</p>
+<h2 id="文本文件-txt-csv等"><a href="#文本文件-txt-csv等" class="headerlink" title="文本文件.txt .csv等"></a>文本文件<code>.txt</code> <code>.csv</code>等</h2><h3 id="textscan"><a href="#textscan" class="headerlink" title="textscan"></a><code>textscan</code></h3><blockquote>
+<p>针对数字和文本，但是必须制定该列的属性，即每一列的不同行内容是一致的，否则需要指定读取的行数，改变行后需要重新指定数据格式，非常麻烦。且读取的数据为cell格式，不太方便后续使用。</p>
+</blockquote>
+<p><code>C = textscan(fileID,formatSpec)</code> 将已打开的文本文件中的数据读取到元胞数组 <code>C</code>。该文本文件由文件标识符 <code>fileID</code> 指示。使用 <code>fopen</code> 可打开文件并获取 <code>fileID</code> 值。完成文件读取后，请调用 <code>fclose(fileID)</code> 来关闭文件。</p>
+<p><code>textscan</code> 尝试将文件中的数据与 <code>formatSpec</code> 中的转换设定符匹配。<code>textscan</code> 函数在整个文件中按 <code>formatSpec</code> 重复扫描数据，直至 <code>formatSpec</code> 找不到匹配的数据时才停止。</p>
+<p><code>C = textscan(fileID,formatSpec,N)</code> 按 <code>formatSpec</code> 读取文件数据 <code>N</code> 次，其中 <code>N</code> 是一个正整数。要在 <code>N</code> 个周期后从文件读取其他数据，请使用原 <code>fileID</code> 再次调用 <code>textscan</code> 进行扫描。如果通过调用具有相同文件标识符 (<code>fileID</code>) 的 <code>textscan</code> 恢复文件的文本扫描，则 <code>textscan</code> 将在上次终止读取的点处自动恢复读取。</p>
+<h3 id="readmatrix和writematrix"><a href="#readmatrix和writematrix" class="headerlink" title="readmatrix和writematrix"></a><code>readmatrix</code>和<code>writematrix</code></h3><blockquote>
+<p>只能导入矩阵，且只针对数值，文本字符串会读取为NAN数据</p>
+<p>如果只针对有效数据区域，该函数完全可以胜任，且该函数有<code>opts</code>属性，可以手动指定各项属性。</p>
+</blockquote>
+<h4 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h4><p><code>A = readmatrix(filename)</code> 通过从文件中读取列向数据来创建数组。<code>readmatrix</code> 函数可自动检测文件的导入参数。</p>
+<p><code>readmatrix</code> 基于文件的扩展名确定文件格式：</p>
+<ul>
+<li><code>.txt</code>、<code>.dat</code> 或 <code>.csv</code>（适用于带分隔符的文本文件）</li>
+<li><code>.xls</code>、<code>.xlsb</code>、<code>.xlsm</code>、<code>.xlsx</code>、<code>.xltm</code>、<code>.xltx</code> 或 <code>.ods</code>（适用于电子表格文件）</li>
+</ul>
+<p>对于包含数值和文本混合数据的文件，默认情况下，<code>readmatrix</code> 将数据作为数值数组导入。</p>
+<p><code>A = readmatrix(filename,opts)</code> 使用导入选项 <code>opts</code> 创建表。</p>
+<p><code>A = readmatrix(___,Name,Value)</code> 基于文件创建一个数组，并通过一个或多个名称-值对组参数指定其他选项。您需要在上述语法的输入参数之后指定名称-值对组。</p>
+<p>要为数据设置特定的导入选项，您可以使用 <code>opts</code> 对象，也可以指定名称-值对组。当您指定除 <code>opts</code> 之外的名称-值对组时，<code>readmatrix</code> 仅支持下列名称-值对组：</p>
+<ul>
+<li>文本文件 - <code>DateLocale</code>、<code>Encoding</code></li>
+<li>电子表格文件 - <code>Sheet</code>、<code>UseExcel</code></li>
+</ul>
+<h5 id="预览电子表格文件中的数据，并以矩阵形式从指定的工作表和范围中导入数值数据"><a href="#预览电子表格文件中的数据，并以矩阵形式从指定的工作表和范围中导入数值数据" class="headerlink" title="预览电子表格文件中的数据，并以矩阵形式从指定的工作表和范围中导入数值数据"></a>预览电子表格文件中的数据，并以矩阵形式从指定的工作表和范围中导入数值数据</h5><p>电子表格文件 <code>airlinesmall_subset.xlsx</code>包含 1996 年至 2008 年间多个工作表中的数据。每个工作表都包含给定年份的数据。预览文件 <code>airlinesmall_subset.xlsx</code> 中的数据。默认情况下，<code>preview</code> 函数显示第一个工作表中的前八个变量包含数值数据。<code>opts</code>可以用函数<code>detectImportOptions</code>函数获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opts &#x3D; detectImportOptions(&#39;airlinesmall_subset.xlsx&#39;);</span><br><span class="line">preview(&#39;airlinesmall_subset.xlsx&#39;,opts)</span><br></pre></td></tr></table></figure>
+
+<p>配置 opts 对象中的值，以便从名为 <code>&#39;2007&#39;</code> 的工作表中导入前五个变量的 <code>10</code> 行。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">opts.Sheet = <span class="string">'2007'</span>;</span><br><span class="line">opts.SelectedVariableNames = [<span class="number">1</span>:<span class="number">5</span>]; <span class="comment">% 选择列范围</span></span><br><span class="line">opts.DataRange = <span class="string">'2:11'</span>; <span class="comment">% 选择行范围</span></span><br><span class="line">M = readmatrix(<span class="string">'airlinesmall_subset.xlsx'</span>,opts)</span><br><span class="line">M = <span class="number">10</span>×<span class="number">5</span></span><br><span class="line"></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">2</span>           <span class="number">2</span>         <span class="number">711</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">3</span>           <span class="number">3</span>         <span class="number">652</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">4</span>           <span class="number">4</span>        <span class="number">1116</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">5</span>           <span class="number">5</span>         <span class="number">825</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">7</span>           <span class="number">7</span>        <span class="number">1411</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">8</span>           <span class="number">1</span>        <span class="number">1935</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>           <span class="number">9</span>           <span class="number">2</span>        <span class="number">2005</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>          <span class="number">11</span>           <span class="number">4</span>        <span class="number">1525</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>          <span class="number">12</span>           <span class="number">5</span>        <span class="number">1133</span></span><br><span class="line">        <span class="number">2007</span>           <span class="number">1</span>          <span class="number">13</span>           <span class="number">6</span>         <span class="number">922</span></span><br></pre></td></tr></table></figure>
+
+<p>不设置<code>opts</code>属性的情况下，可以用直接指定属性名和值的方式来指定导入数据范围。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">M &#x3D; readmatrix(&#39;airlinesmall_subset.xlsx&#39;,&#39;Sheet&#39;,&#39;2007&#39;,&#39;Range&#39;,&#39;A2:E11&#39;)</span><br><span class="line">M &#x3D; 10×5</span><br><span class="line"></span><br><span class="line">        2007           1           2           2         711</span><br><span class="line">        2007           1           3           3         652</span><br><span class="line">        2007           1           4           4        1116</span><br><span class="line">        2007           1           5           5         825</span><br><span class="line">        2007           1           7           7        1411</span><br><span class="line">        2007           1           8           1        1935</span><br><span class="line">        2007           1           9           2        2005</span><br><span class="line">        2007           1          11           4        1525</span><br><span class="line">        2007           1          12           5        1133</span><br><span class="line">        2007           1          13           6         922</span><br></pre></td></tr></table></figure>
+
+<h4 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h4><p><code>writematrix(A)</code> 将同构数组 <code>A</code> 写入以逗号分隔的文本文件。文件名为数组的工作区变量名称，附加扩展名 <code>.txt</code>。如果 <code>writematrix</code> 无法根据数组名称构造文件名，那么它会写入 <code>matrix.txt</code> 文件中。</p>
+<p><code>A</code> 中每个变量的每一列都将成为输出文件中的列。<code>writematrix</code> 函数会覆盖任何现有文件。</p>
+<p><code>writematrix(A,filename)</code> 写入具有 <code>filename</code> 指定的名称和扩展名的文件。</p>
+<p><code>writematrix</code> 根据指定扩展名确定文件格式。扩展名必须是下列格式之一：</p>
+<ul>
+<li><code>.txt</code>、<code>.dat</code> 或 <code>.csv</code>（适用于带分隔符的文本文件）</li>
+<li><code>.xls</code>、<code>.xlsm</code> 或 <code>.xlsx</code>（适用于 Excel® 电子表格文件）</li>
+<li><code>.xlsb</code>（适用于安装了 Windows® Excel 的系统上支持的 Excel 电子表格文件）</li>
+</ul>
+<p><code>writematrix(___,Name,Value)</code> 在包括上述语法中任意输入参数的同时，还可通过一个或多个 <code>Name,Value</code> 对组参数指定其他选项来将数组写入文件中。</p>
+<h3 id="fgetl-amp-fgets函数"><a href="#fgetl-amp-fgets函数" class="headerlink" title="fgetl &amp; fgets函数"></a><code>fgetl</code> &amp; <code>fgets</code>函数</h3><p><code>tline = fgetl(fileID)</code> 返回指定文件中的下一行，并删除换行符。返回内容为字符向量。</p>
+<ul>
+<li>如果文件非空，则 <code>fgetl</code> 以字符向量形式返回 <code>tline</code>。</li>
+<li>如果文件为空且仅包含文件末尾标记，则 <code>fgetl</code> 以数值 <code>-1</code> 的形式返回 <code>tline</code>。</li>
+</ul>
+<p><code>tline = fgets(fileID)</code> 读取指定文件中的下一行内容，并包含换行符。</p>
+<p><code>tline = fgets(fileID,nchar)</code> 返回下一行中的最多 <code>nchar</code> 个字符。</p>
+<h2 id="实验数据导入方法"><a href="#实验数据导入方法" class="headerlink" title="实验数据导入方法"></a>实验数据导入方法</h2><ol>
+<li><code>fopen</code>函数获取文件ID</li>
+<li>用<code>fgetl</code>获取行的信息，并根据不同数据文件的特定字符返回行数，作为数据部分的限定数值。</li>
+<li>同时可以获取数据文件中的各项参数，需用<code>fcolse</code>关闭</li>
+<li>使用<code>opts=detectImportOptions(filename)</code>函数获取文件导入信息，如果是电子表格，设置<code>opts.DataRange</code>属性限制行数，如果是文本（<code>.txt</code>,<code>.csv</code>）则使用<code>opts.DataLines</code>限制行数。<code>opts.SelectedVariableNames</code>属性设置列数</li>
+<li>使用<code>readmatrix(filename， opts）</code>导入数据。</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/27/MATLAB-Import-and-Export/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/06/23/Matlab-Primer/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Matlab Primer</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> kewei
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516124156.jpg" alt="Kewei"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>给我充电吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165413.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165414.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['书声读落三更月，笔阵横开万里云', '驰笔常苦夏日短，展卷不厌冬夜长', '术业宜从勤学起，韶华不为少年留'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

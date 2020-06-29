@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Matlab Primer |  Kewei
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516140406.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-Matlab-Primer" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Matlab Primer
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/23/Matlab-Primer/" class="article-date">
+  <time datetime="2020-06-23T11:01:10.000Z" itemprop="datePublished">2020-06-23</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">25 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>基于MATLAB官方文档：MATLAB Primer</p>
+<p>中文文档：getstart_zh_CN</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="0-安装字体"><a href="#0-安装字体" class="headerlink" title="0 安装字体"></a>0 安装字体</h2><p>字体安装 Microsoft Yahei Mono</p>
+<p><code>Microsoft Yahei Mono</code>是一个集成了comosol等宽和雅黑汉字的字体，这样既可以使字体等宽显示，也可以正常查看中文</p>
+<h2 id="1-入门"><a href="#1-入门" class="headerlink" title="1 入门"></a>1 入门</h2><h3 id="桌面基础知识"><a href="#桌面基础知识" class="headerlink" title="桌面基础知识"></a>桌面基础知识</h3><p>命令行部分的计算会显示在缓冲区，如果未指定输出变量，MATLAB 将使用变量 <code>ans</code>（answer 的缩略形式）来存储计算结果</p>
+<p>如果语句以分号结束，MATLAB 会执行计算，但不在命令行窗口中显示输出。</p>
+<h3 id="矩阵和数组"><a href="#矩阵和数组" class="headerlink" title="矩阵和数组"></a>矩阵和数组</h3><p>所有 MATLAB 变量都是多维数组，与数据类型无关。矩阵是指通常用来进行线性代数运算的二维数组。</p>
+<h4 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h4><h5 id="手动创建"><a href="#手动创建" class="headerlink" title="手动创建"></a>手动创建</h5><p>要创建行数组，请使用逗号 (,) 或空格分隔各元素。</p>
+<p>要创建包含多行的矩阵，请使用分号分隔各行。</p>
+<h5 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h5><p>使用 ones、zeros 或 rand 、eye等函数。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = <span class="built_in">zeros</span>(<span class="number">5</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="矩阵和数组运算"><a href="#矩阵和数组运算" class="headerlink" title="矩阵和数组运算"></a>矩阵和数组运算</h4><p>MATLAB 允许使用单一的算术运算符或函数来处理矩阵中的所有值。即简单算数运算符对矩阵运算时作用对象是矩阵中的每个数值</p>
+<h5 id="转置运算符：-39"><a href="#转置运算符：-39" class="headerlink" title="转置运算符：&#39;"></a>转置运算符：<code>&#39;</code></h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">10</span>]</span><br><span class="line">a = <span class="number">3</span>×<span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line"><span class="number">7</span> <span class="number">8</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">a'</span><br><span class="line"><span class="built_in">ans</span> = <span class="number">3</span>×<span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">2</span> <span class="number">5</span> <span class="number">8</span></span><br><span class="line"><span class="number">3</span> <span class="number">6</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="标准矩阵乘法"><a href="#标准矩阵乘法" class="headerlink" title="标准矩阵乘法 *"></a>标准矩阵乘法 *</h5><p>计算行与列之间的内积。例如，确认矩阵乘以其逆矩阵可返回单位矩阵：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = a*inv(a)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实际测试会报WARNING</p>
+<p>警告: 矩阵接近奇异值，或者缩放错误。结果可能不准确。RCOND =  2.202823e-18。</p>
+</blockquote>
+<p>format 仅影响数字显示，而不影响 MATLAB 对数字的计算或保存方式。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">format long</span><br><span class="line">format short</span><br></pre></td></tr></table></figure>
+
+<h5 id="元素级乘法"><a href="#元素级乘法" class="headerlink" title="元素级乘法.*"></a>元素级乘法<code>.*</code></h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = a.*a</span><br></pre></td></tr></table></figure>
+
+<p>乘法、除法和幂的矩阵运算符分别具有执行元素级运算的对应数组运算符<code>.*</code>, <code>./</code>, <code>.^</code> </p>
+<p>合并数组<code>[]</code></p>
+<p>水平合并<code>A = [a, b]</code>，a,b两个数组需要有相同的行数</p>
+<p>垂直合并<code>A = [a; b]</code>，a,b两个数组需要有相同的列数</p>
+<h5 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h5><p>要表示复数的虚部，请使用 i 或 j。</p>
+<p>虚数单位是 -1 的平方根。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sqrt</span>(<span class="number">-1</span>)</span><br><span class="line"><span class="built_in">ans</span> = <span class="number">0.0000</span> + <span class="number">1.0000</span><span class="built_in">i</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; magic(4)</span><br><span class="line">A &#x3D; 4×4</span><br><span class="line">16 2 3 13</span><br><span class="line">5 11 10 8</span><br><span class="line">9 7 6 12</span><br><span class="line">4 14 15 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="坐标索引："><a href="#坐标索引：" class="headerlink" title="坐标索引："></a>坐标索引：</h5><p>指定行和列下标，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A(4,2)</span><br><span class="line">ans &#x3D; 14</span><br></pre></td></tr></table></figure>
+
+<h5 id="线性索引："><a href="#线性索引：" class="headerlink" title="线性索引："></a>线性索引：</h5><p>使用单一下标按顺序向下遍历每一列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A(8)</span><br><span class="line">ans &#x3D; 14</span><br></pre></td></tr></table></figure>
+
+<h6 id="赋值时索引超过数组大小会自动增大以便容纳新元素"><a href="#赋值时索引超过数组大小会自动增大以便容纳新元素" class="headerlink" title="赋值时索引超过数组大小会自动增大以便容纳新元素"></a>赋值时索引超过数组大小会自动增大以便容纳新元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A(4,5) &#x3D; 17</span><br><span class="line">A &#x3D; 4×5</span><br><span class="line">16 2 3 13 0</span><br><span class="line">5 11 10 8 0</span><br><span class="line">9 7 6 12 0</span><br><span class="line">4 14 15 1 17</span><br></pre></td></tr></table></figure>
+
+<h5 id="索引区块"><a href="#索引区块" class="headerlink" title="索引区块:"></a>索引区块<code>:</code></h5><p>引用多个数组元素，用 <code>start:end</code> 指定范围。<br>前三行及第二列中的元素：<br>A(1:3,2)</p>
+<p>单独的冒号（没有起始值或结束值）时，指定该维中的所有元素。例如，选择 A 第三行中的所有列：<br>A(3,:)<br>冒号运算符还允许您使用较通用的格式 <code>start:step:end</code> 创建等距向量值。</p>
+<h3 id="工作区变量"><a href="#工作区变量" class="headerlink" title="工作区变量"></a>工作区变量</h3><p>工作区包含在 MATLAB 中创建或从数据文件或其他程序导入的变量</p>
+<h4 id="whos"><a href="#whos" class="headerlink" title="whos"></a>whos</h4><p>whos 可以查看工作区的内容。</p>
+<h4 id="save"><a href="#save" class="headerlink" title="save"></a>save</h4><p>save 命令保存数据以供将来使用，<br><code>save myfile.mat</code></p>
+<p>通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。</p>
+<h4 id="load"><a href="#load" class="headerlink" title="load"></a>load</h4><p>load 将 MAT 文件中的数据还原到工作区。<br><code>load myfile.mat</code></p>
+<h4 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h4><p>清除工作区中的所有变量</p>
+<h3 id="设置工作区"><a href="#设置工作区" class="headerlink" title="设置工作区"></a>设置工作区</h3><p>在主页设置中，<code>设置路径</code>中选择，选择后该文件夹内的程序可以在搜索路径内</p>
+<h3 id="文本和字符"><a href="#文本和字符" class="headerlink" title="文本和字符"></a>文本和字符</h3><h4 id="字符串数组-string"><a href="#字符串数组-string" class="headerlink" title="字符串数组 string"></a>字符串数组 <code>string</code></h4><h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><p>当您处理文本时，将字符序列括在<code>双引号</code>中。可以将文本赋给变量。</p>
+<p><code>t = &quot;Hello, world&quot;;</code></p>
+<p>如果文本包含双引号，请在定义中使用两个双引号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q &#x3D; &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;</span><br><span class="line">q &#x3D;</span><br><span class="line">&quot;Something &quot;quoted&quot; and something else.&quot;</span><br></pre></td></tr></table></figure>
+
+<p>与所有 MATLAB 变量一样，t 和 q 为数组。它们的类或数据类型是 string。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">whos t</span><br><span class="line">Name Size Bytes Class Attributes</span><br><span class="line">t 1x1 174 string</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h5><p>使用加号运算符<code>+</code>将文本添加到字符串的末尾，或者合并两个字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f &#x3D; 71;</span><br><span class="line">c &#x3D; (f-32)&#x2F;1.8;</span><br><span class="line">tempText &#x3D; &quot;Temperature is &quot; + c + &quot;C&quot;</span><br><span class="line">tempText &#x3D;</span><br><span class="line">&quot;Temperature is 21.6667C&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="字符串数组"><a href="#字符串数组" class="headerlink" title="字符串数组"></a>字符串数组</h5><p>字符串可以组成字符串数组可以有多个元素。使用 strlength 函数求数组中每个字符串的长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; [&quot;a&quot;,&quot;bb&quot;,&quot;ccc&quot;; &quot;dddd&quot;,&quot;eeeeee&quot;,&quot;fffffff&quot;]</span><br><span class="line">A &#x3D;</span><br><span class="line">2×3 string array</span><br><span class="line">&quot;a&quot; &quot;bb&quot; &quot;ccc&quot;</span><br><span class="line">&quot;dddd&quot; &quot;eeeeee&quot; &quot;fffffff&quot;</span><br><span class="line">strlength(A)</span><br><span class="line">ans &#x3D;</span><br><span class="line">1 2 3</span><br><span class="line">4 6 7</span><br></pre></td></tr></table></figure>
+
+<h4 id="字符数组-char"><a href="#字符数组-char" class="headerlink" title="字符数组 char"></a>字符数组 <code>char</code></h4><p>与字符串数组类似，但使用<code>单引号</code>定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">seq &#x3D; &#39;GCTAGAATCC&#39;;</span><br><span class="line">whos seq</span><br><span class="line">Name Size Bytes Class Attributes</span><br><span class="line">seq 1x10 20 char</span><br></pre></td></tr></table></figure>
+
+<p>数组的每个元素都包含单个字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seq(4)</span><br><span class="line">ans &#x3D;</span><br><span class="line">&#39;A&#39;</span><br></pre></td></tr></table></figure>
+
+<p>对字符数组可以执行<code>[]</code>，串联两个字符数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seq2 &#x3D; [seq &#39;ATTAGAAACC&#39;]</span><br><span class="line">seq2 &#x3D;</span><br><span class="line">&#39;GCTAGAATCCATTAGAAACC&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><p>调用函数时，将输入参数放于圆括号<code>()</code>中，多个参数使用逗号分隔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; [1 3 5];</span><br><span class="line">max(A)</span><br><span class="line">ans &#x3D; 5</span><br><span class="line"></span><br><span class="line">B &#x3D; [10 6 4];</span><br><span class="line">max(A,B)</span><br><span class="line">ans &#x3D; 1×3</span><br><span class="line">10 6 5</span><br></pre></td></tr></table></figure>
+
+
+<p>如果存在多个输出参数，用方括号接收多个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[maxA,location] &#x3D; max(A)</span><br><span class="line">maxA &#x3D; 5</span><br><span class="line">location &#x3D; 3</span><br></pre></td></tr></table></figure>
+
+<h5 id="clc"><a href="#clc" class="headerlink" title="clc"></a>clc</h5><p><code>clc</code> 函数清空命令行窗口。</p>
+<h3 id="二维图和三维图"><a href="#二维图和三维图" class="headerlink" title="二维图和三维图"></a>二维图和三维图</h3><h4 id="二维线图-plot"><a href="#二维线图-plot" class="headerlink" title="二维线图 plot"></a>二维线图 <code>plot</code></h4><p>二维线图，请使用 <code>plot()</code> 函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; 0:pi&#x2F;100:2*pi;</span><br><span class="line">y &#x3D; sin(x);</span><br><span class="line">plot(x,y,&#39;r--&#39;)</span><br><span class="line"></span><br><span class="line">xlabel(&#39;x&#39;)</span><br><span class="line">ylabel(&#39;sin(x)&#39;)</span><br><span class="line">title(&#39;Plot of the Sine Function&#39;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="hold-on-amp-hold-off"><a href="#hold-on-amp-hold-off" class="headerlink" title="hold on &amp; hold off"></a><code>hold on</code> &amp; <code>hold off</code></h4><p>要将绘图添加到现有图窗中，请使用 hold on。在使用 hold off 或关闭窗口之前，当前图窗窗口中会显示<br>所有绘图。</p>
+<h4 id="三维绘图-surf"><a href="#三维绘图-surf" class="headerlink" title="三维绘图 surf"></a>三维绘图 <code>surf</code></h4><p>三维图通常显示一个由带两个变量的函数（即 z = f (x,y)）定义的曲面图。<br>要计算 z，请首先使用 <code>meshgrid</code> 在此函数的域中创建一组 (x,y) 点。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[X,Y] = <span class="built_in">meshgrid</span>(<span class="number">-2</span>:<span class="number">.2</span>:<span class="number">2</span>);</span><br><span class="line">Z = X .* <span class="built_in">exp</span>(-X.^<span class="number">2</span> - Y.^<span class="number">2</span>);</span><br><span class="line">// 然后，创建曲面图。</span><br><span class="line">surf(X,Y,Z)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>surf</code> 函数及其伴随函数 <code>mesh</code> 以三维形式显示曲面图。surf 使用颜色显示曲面图的连接线和面。mesh<br>生成仅以颜色标记连接定义点的线条的线框曲面图。</p>
+<h4 id="子图-subplot"><a href="#子图-subplot" class="headerlink" title="子图 subplot"></a>子图 <code>subplot</code></h4><p>使用 subplot 函数可以在同一窗口的不同子区域显示多个绘图。<br>subplot 的前两个输入表示每行和每列中的绘图数。第三个输入指定绘图是否处于活动状态。例如，在图<br>窗窗口的 2×2 网格中创建四个绘图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">t &#x3D; 0:pi&#x2F;10:2pi;</span><br><span class="line">[X,Y,Z] &#x3D; cylinder(4cos(t));</span><br><span class="line">subplot(2,2,1); mesh(X); title(&#39;X&#39;);</span><br><span class="line">subplot(2,2,2); mesh(Y); title(&#39;Y&#39;);</span><br><span class="line">subplot(2,2,3); mesh(Z); title(&#39;Z&#39;);</span><br><span class="line">subplot(2,2,4); mesh(X,Y,Z); title(&#39;X,Y,Z&#39;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="编程和脚本"><a href="#编程和脚本" class="headerlink" title="编程和脚本"></a>编程和脚本</h3><h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><p>创建脚本: <code>edit mysphere</code>. 该命令会打开一个名为 <code>mysphere.m</code> 的空白文件</p>
+<p>例子：</p>
+<ol>
+<li>创建一个单位球、将半径加倍并绘制结果图：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% sphere 函数</span></span><br><span class="line">[x,y,z] = sphere;</span><br><span class="line">r = <span class="number">2</span>;</span><br><span class="line">surf(x*r,y*r,z*r)</span><br><span class="line">axis equal <span class="comment">% 使坐标轴等距</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sphere</code>可以创建一个20*20个面的半径为1的圆，给出的是21*21的[x y z]坐标</p>
+<p><code>sphere(n)</code>创建一个n*n个面的半径为1的圆，给出的是(n+1)*(n+1)的[x y z]坐标</p>
+<ol start="2">
+<li>接下来，添加代码以计算球的表面积和体积：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4</span>*<span class="built_in">pi</span>*r^<span class="number">2</span>;</span><br><span class="line">V = (<span class="number">4</span>/<span class="number">3</span>)*<span class="built_in">pi</span>*r^<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="代码注释"><a href="#代码注释" class="headerlink" title="代码注释%"></a>代码注释<code>%</code></h5><p>编写代码时注意添加注释，以备后续使用</p>
+<h5 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h5><p>将代码保存在脚本中，且脚本位于当年的工作目录下（<code>pwd</code>输出当前工作目录），在命令行中键入脚本名称即可运行基本内容<br>本例中在命令行输入<code>mysphere</code>回车后即完成图形绘制</p>
+<p>还可以从编辑器使用运行按钮 运行脚本。</p>
+<h4 id="实时脚本"><a href="#实时脚本" class="headerlink" title="实时脚本"></a>实时脚本</h4><p>您可以使用实时脚本中的格式设置选项来增强代码，而不是以纯文本编写代码和注释。实时脚本有助于您查看代码和输出并与之交互，还可以包含格式化文本、方程和图像。</p>
+<p>不太常用，此处不再学习。</p>
+<h4 id="循环及条件语句"><a href="#循环及条件语句" class="headerlink" title="循环及条件语句"></a>循环及条件语句</h4><h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a><code>for</code>循环</h5><p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index = values</span><br><span class="line">   statements</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>for后可以跟的语句示例：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n = <span class="number">1</span>:N</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n = <span class="number">1</span>:<span class="number">2</span>:N <span class="comment">% 步长为2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]</span><br></pre></td></tr></table></figure>
+
+<p>直接对矩阵进行for循环</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = maigc(<span class="built_in">i</span>, <span class="built_in">j</span>)</span><br><span class="line"><span class="keyword">for</span> n = A <span class="comment">% 以列为单位进行循环，n依次为A的第j列组成的列向量</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="if循环"><a href="#if循环" class="headerlink" title="if循环"></a><code>if</code>循环</h5><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if expression</span><br><span class="line">    statements</span><br><span class="line">elseif expression</span><br><span class="line">    statements</span><br><span class="line">else</span><br><span class="line">    statements</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>if后面跟的应该是逻辑值 <code>ture</code>, <code>false</code></p>
+<p>直接将判断语句放在if后面使用是最简单的</p>
+<p>同时，可以配合<code>any</code>, <code>isequal</code>, <code>strcmp</code>, <code>exit</code>等判断函数进行简便操作</p>
+<p><code>isempty</code>用于判断数组是否为空(A = zeros(0), A =[]都可以创建空数组)</p>
+<p><code>isequal</code>用于判断数组是否相等 (数组大小和元素必须全部一样)</p>
+<p><code>strcmp</code>用于比较字符和字符串内容是否一致</p>
+<p><code>exist</code> 检查变量、脚本、函数、文件夹或类的存在情况</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> any(A &gt; limit)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isequal</span>(<span class="built_in">size</span>(A),<span class="built_in">size</span>(B))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> strcmp(reply,<span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> exist(<span class="string">'myfunction.m'</span>,<span class="string">'file'</span>) &amp;&amp; (myfunction(x) &gt;= <span class="built_in">pi</span>)</span><br></pre></td></tr></table></figure>
+
+<p>与或非：<code>&amp;&amp;</code>, <code>||</code>, <code>~</code></p>
+<h4 id="脚本位置"><a href="#脚本位置" class="headerlink" title="脚本位置"></a>脚本位置</h4><p>MATLAB 在特定位置中查找脚本及其他文件。要运行脚本，该文件必须位于当前文件夹或搜索路径中的某个文件夹内。</p>
+<p>默认情况下，MATLAB 安装程序创建的 MATLAB 文件夹位于此搜索路径中。如果要将程序存储在其他文件夹，或者要运行其他文件夹中的程序，请将其添加到此搜索路径。在当前文件夹浏览器中选中相应的文件夹，右键点击，然后选择添加到路径。</p>
+<p>在命令行窗口用<code>cd</code>命令手动改变路径是最方便的</p>
+<h3 id="帮助与文档"><a href="#帮助与文档" class="headerlink" title="帮助与文档"></a>帮助与文档</h3><p><code>doc sin</code>用于单独窗口查看文档</p>
+<p><code>help sin</code>在命令行窗口输出简单介绍</p>
+<h2 id="2-语言基础知识"><a href="#2-语言基础知识" class="headerlink" title="2 语言基础知识"></a>2 语言基础知识</h2><h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><h4 id="求和、转置、对角矩阵"><a href="#求和、转置、对角矩阵" class="headerlink" title="求和、转置、对角矩阵"></a>求和、转置、对角矩阵</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sum(A) <span class="comment">%对A的每一列进行求和，得到行向量</span></span><br><span class="line">sum(A, <span class="number">2</span>) <span class="comment">%对A的每一行进行求和，得到列向量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">diag</span>(A) <span class="comment">%获取A的对角线元素</span></span><br><span class="line"><span class="built_in">fliplr</span>(A) <span class="comment">%将矩阵A的元素左右翻转 flip left right</span></span><br><span class="line">flipup(A) <span class="comment">%将矩阵A的元素上下翻转 flip up down</span></span><br><span class="line"><span class="built_in">diag</span>(<span class="built_in">fliplr</span>(A)) <span class="comment">%获取副对角线元素</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="生成矩阵函数"><a href="#生成矩阵函数" class="headerlink" title="生成矩阵函数"></a>生成矩阵函数</h4><p><code>zeros()</code>生成全是0的矩阵</p>
+<p><code>ones()</code>生成全是1的矩阵</p>
+<p><code>rand()</code>生成均匀分布的随机数组成的矩阵</p>
+<p><code>randn()</code>生成正态分布的随机数组成的矩阵</p>
+<p><code>rand([n,1])</code>可以生成一个随机数的列向量</p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>区分大小写</p>
+<p>最长为<code>namelengthmax</code>的值，即63位</p>
+<h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><p>不同精度数字范围不同</p>
+<p><code>e</code>表示科学计数</p>
+<h5 id="虚数"><a href="#虚数" class="headerlink" title="虚数"></a>虚数</h5><p>排序时先考虑量值，然后根据相位角排序</p>
+<p><code>angle</code>用于求虚数的相位角，</p>
+<p><code>==</code>必须实部和虚部都相等，<code>&gt; &lt; &gt;= &lt;=</code>会忽略虚部，只比较实部</p>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>对于矩阵运算：即将矩阵作为整体进行运算时，用常规的算数运算符号</p>
+<p>对于二维数组，即计算对象是每个元素时</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="comment">%加法</span></span><br><span class="line">- <span class="comment">%减法</span></span><br><span class="line">.* <span class="comment">%逐元素乘法</span></span><br><span class="line">./ <span class="comment">%逐元素除法</span></span><br><span class="line">.\ <span class="comment">%逐元素左除</span></span><br><span class="line">.^ <span class="comment">%逐元素幂</span></span><br><span class="line">.<span class="string">' %非共轭数组转置</span></span><br></pre></td></tr></table></figure>
+
+<p>初等函数对矩阵/数组运算时是对每个元素进行运算</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>MATLAB 提供了大量数学函数，包括 abs、sqrt、exp 和 sin。</p>
+<p>有关初等数学函数的列表，使用<code>help elfun</code>查看<br>有关高等数学函数和矩阵函数的列表，使用<code>help specfun</code>, <code>help elmat</code>查看</p>
+<p>一些特殊函数提供了有用的常量值。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pi</span> <span class="comment">%3.14159265...</span></span><br><span class="line"><span class="built_in">i</span> <span class="comment">%虚数单位 −1</span></span><br><span class="line"><span class="comment">%j 与 i 相同</span></span><br><span class="line"><span class="built_in">eps</span> <span class="comment">%浮点相对精度 ε = 2−52</span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">%最小浮点数 2−1022</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">%最大浮点数 (2 − ε)21023</span></span><br><span class="line">Inf <span class="comment">%无穷大</span></span><br><span class="line">NaN <span class="comment">%非数字</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用新变量覆盖任何函数名称, 可以使用<code>clear</code>清除自定义的变量来恢复原始函数</p>
+<h3 id="输入命令"><a href="#输入命令" class="headerlink" title="输入命令"></a>输入命令</h3><h4 id="format-函数"><a href="#format-函数" class="headerlink" title="format 函数"></a>format 函数</h4><p>用于控制所显示的值的数值格式。此函数仅影响数字显示方式，而不会影响 MATLAB 软件如何计算或保存数字。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">4</span>/<span class="number">3</span> <span class="number">1.2345e-6</span>]</span><br><span class="line">format short</span><br><span class="line"><span class="number">1.3333</span> <span class="number">0.0000</span></span><br><span class="line">format short e</span><br><span class="line"><span class="number">1.3333e+000</span> <span class="number">1.2345e-006</span></span><br><span class="line">format short g</span><br><span class="line"><span class="number">1.3333</span> <span class="number">1.2345e-006</span></span><br><span class="line">format long</span><br><span class="line"><span class="number">1.33333333333333</span> <span class="number">0.00000123450000</span></span><br><span class="line">format long e</span><br><span class="line"><span class="number">1.333333333333333e+000</span> <span class="number">1.234500000000000e-006</span></span><br><span class="line">format long g</span><br><span class="line"><span class="number">1.33333333333333</span> <span class="number">1.2345e-006</span></span><br><span class="line">format bank</span><br><span class="line"><span class="number">1.33</span> <span class="number">0.00</span></span><br><span class="line">format <span class="built_in">rat</span></span><br><span class="line"><span class="number">4</span>/<span class="number">3</span> <span class="number">1</span>/<span class="number">810045</span></span><br><span class="line">format hex</span><br><span class="line"><span class="number">3</span>ff5555555555555 <span class="number">3</span>eb4b6231abfd271</span><br></pre></td></tr></table></figure>
+
+<p><code>format compact</code>会不显示在输出中出现的多个空行。这样，您可以在屏幕或窗口中查看更多信息。</p>
+<p>如果要进一步控制输出格式，使用 <code>sprintf</code> 和 <code>fprintf</code> 函数。</p>
+<h3 id="取消输出"><a href="#取消输出" class="headerlink" title="取消输出"></a>取消输出</h3><p>使用分号结束行，MATLAB 会执行计算，但不会显示任何输出。</p>
+<h3 id="输入长语句"><a href="#输入长语句" class="headerlink" title="输入长语句"></a>输入长语句</h3><p>如果语句无法容纳在一行中，请使用省略号（三个句点）…，后跟 Return 或 Enter 以指示该语句在下一行继续。</p>
+<p>例如，</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="number">1</span> <span class="number">-1</span>/<span class="number">2</span> + <span class="number">1</span>/<span class="number">3</span> <span class="number">-1</span>/<span class="number">4</span> + <span class="number">1</span>/<span class="number">5</span> - <span class="number">1</span>/<span class="number">6</span> + <span class="number">1</span>/<span class="number">7</span> ...</span><br><span class="line"></span><br><span class="line">- <span class="number">1</span>/<span class="number">8</span> + <span class="number">1</span>/<span class="number">9</span> - <span class="number">1</span>/<span class="number">10</span> + <span class="number">1</span>/<span class="number">11</span> - <span class="number">1</span>/<span class="number">12</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h4><p>A 的行 i 和列 j 中的元素通过 <code>A(i,j)</code> 表示。</p>
+<p>还可以使用单一下标 A(k) 引用矩阵的元素。单一下标是引用行和列向量的常见方法。但也可以对满二维矩阵应用单一下标。在这种情况下，数组被视为一个由原始矩阵的列构成的长列向量。</p>
+<p><code>A(n)</code> 引用存储的值可以用 <code>A(mod(n,i), ceil(n/i))</code> 表示</p>
+<blockquote>
+<p>对于除法的四舍五入：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">'fix' 朝零方向舍入到最接近的整数，这相当于删除小数点后的所有位数。</span><br><span class="line">'floor' 朝负无穷方向舍入到最接近的整数。</span><br><span class="line">'ceil' 朝正无穷方向舍入到最接近的整数。</span><br><span class="line">'round' 舍入到最接近的整数。如果元素的小数部分恰好为 0.5，则它朝偏离零的方向舍入到模更大的整数。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果尝试使用矩阵外部元素的值，则会生成错误</p>
+<p>相反，如果将值存储在矩阵外部元素中，则会增大大小以便容纳新元素</p>
+<h4 id="冒号运算符"><a href="#冒号运算符" class="headerlink" title="冒号运算符"></a>冒号运算符</h4><h5 id="生成等间距向量"><a href="#生成等间距向量" class="headerlink" title="生成等间距向量"></a>生成等间距向量</h5><p><code>start:step:end</code>，<code>step</code>缺省时为 1</p>
+<h5 id="矩阵引用"><a href="#矩阵引用" class="headerlink" title="矩阵引用"></a>矩阵引用</h5><p>本质上是对生成的等间距向量的应用</p>
+<p>包含冒号的下标表达式引用部分矩阵：</p>
+<p><code>A(1:k,j)</code>表示 A 第 j 列中的前 k 个元素。因此，</p>
+<p>冒号本身引用矩阵行或列中的所有元素，而关键字 <code>end</code> 引用最后一个行或列。因此，<br><code>sum(A(:,end))</code>计算 A 最后一列中的元素的总和</p>
+<h4 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h4><p>成对的方括号 <code>[]</code> 即为串联运算符</p>
+<p>类似于生成新矩阵方法，逗号或空格用于区分列，分号用于区分行，从而将不同数组作为元素放入新矩阵。</p>
+<h4 id="删除行或列"><a href="#删除行或列" class="headerlink" title="删除行或列"></a>删除行或列</h4><p>一对方括号可从矩阵中删除行和列，如X(:,2) = []会删除X的第2列</p>
+<p>如果删除矩阵中的单个元素，结果将不再是矩阵。因此，X(1,2) = [] 将会导致错误。</p>
+<p>但是，使用单一下标可以删除一个元素或元素序列，并将其余元素重构为一个行向量。</p>
+<h4 id="标量扩展"><a href="#标量扩展" class="headerlink" title="标量扩展"></a>标量扩展</h4><p>可以采用多种不同方法将矩阵和标量合并在一起。通过从每个元素中减去标量而实现矩阵与标量的加减运算</p>
+<p>通过标量扩展，MATLAB 可以为范围中的所有索引分配一个指定标量。例如，<code>B(1:2,2:3) = 0</code></p>
+<h4 id="逻辑下标"><a href="#逻辑下标" class="headerlink" title="逻辑下标"></a>逻辑下标</h4><p>根据逻辑和关系运算结果<code>true</code> <code>false</code>作为坐标引用数组元素。即使作用对象为矩阵或二维数组，返回的也是一个向量，如果想对某一列作用，需要先提取出来。</p>
+<h5 id="基于返回逻辑值的函数"><a href="#基于返回逻辑值的函数" class="headerlink" title="基于返回逻辑值的函数"></a>基于返回逻辑值的函数</h5><p><code>isfinite(x)</code>可以判断x的元素是否为<code>NaN</code>或<code>Inf</code>，若为有限数值则返回<code>true</code>，若为这两个值则范围<code>false</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; [2.1 1.7 1.6 1.5 NaN 1.9 1.8 1.5 5.1 1.8 1.4 2.2 1.6 1.8];</span><br><span class="line"></span><br><span class="line">x &#x3D; x(isfinite(x))</span><br><span class="line">x &#x3D;</span><br><span class="line">2.1 1.7 1.6 1.5 1.9 1.8 1.5 5.1 1.8 1.4 2.2 1.6 1.8</span><br></pre></td></tr></table></figure>
+
+<h5 id="基于逻辑表达式结果"><a href="#基于逻辑表达式结果" class="headerlink" title="基于逻辑表达式结果"></a>基于逻辑表达式结果</h5><p>利用x元素的逻辑判断结果作为x的坐标索引</p>
+<p>这里注意：<code>abs</code> <code>mean</code> <code>std</code>函数可以直接对向量或者矩阵运算，若为矩阵则默认针对列向量</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 输出离群值：</span></span><br><span class="line">x = x(<span class="built_in">abs</span>(x-<span class="built_in">mean</span>(x)) &gt; <span class="number">3</span>*std(x))</span><br><span class="line">x =</span><br><span class="line"><span class="number">5.1</span></span><br></pre></td></tr></table></figure>
+
+<p>类似地，将A中的非质数赋值为0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; magic(4);</span><br><span class="line"></span><br><span class="line">A(~isprime(A)) &#x3D; 0</span><br><span class="line">A &#x3D;</span><br><span class="line">0 3 2 13</span><br><span class="line">5 0 11 0</span><br><span class="line">0 0 7 0</span><br><span class="line">0 0 0 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="find-函数"><a href="#find-函数" class="headerlink" title="find 函数"></a>find 函数</h4><p>find 函数以列向量的形式返回与指定逻辑条件相符的数组元素的索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">k &#x3D; find(isprime(A))&#39;</span><br><span class="line">k &#x3D;</span><br><span class="line">2 5 9 10 11 13</span><br><span class="line"></span><br><span class="line">A(k)</span><br><span class="line">ans &#x3D;</span><br><span class="line">5 3 2 11 7 13</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组类型："><a href="#数组类型：" class="headerlink" title="数组类型："></a>数组类型：</h3><h4 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h4><p>MATLAB中可以创建多维的数组，用于表示同一事物的不同维度数据。可以利用具有多个参数的<code>zeros</code>、<code>ones</code>、<code>rand</code> 或 <code>randn</code>来生成多维矩阵。</p>
+<p><code>perms(A)</code>函数始终返回输入向量的所有置换，但置换顺序可能因不同 MATLAB 版本而异。</p>
+<p>若是长度为N的行向量或列向量，返回的是<code>m = N!</code>,<code>n = N</code>的(m,n)维数组，每一行为原始向量的所有元素，不同行为不同排列方式。<code>factorial(n)</code>可以用于计算n的阶乘。</p>
+<p>若是形如A(i, j)的数组，或是更高维度的数组，则会按照A(k)的索引方式，先得到一个向量，然后对顺序做置换，最后得到一个<code>m = (i*j)!</code>,<code>n = (i*j)</code>的(m,n)维数组</p>
+<p>因此，一般<code>perms</code>作用对象为向量，从而得到一个不同顺序的结果，用于数组的引用。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="built_in">perms</span>(<span class="number">1</span>:<span class="number">4</span>);</span><br><span class="line"><span class="comment">%生成 4! = 24 种1:4的排列。第 k 行为 p(k,:)</span></span><br><span class="line">A = <span class="built_in">magic</span>(<span class="number">4</span>);</span><br><span class="line">M = <span class="built_in">zeros</span>(<span class="number">4</span>,<span class="number">4</span>,<span class="number">24</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">24</span></span><br><span class="line">	M(:,:,k) = A(:,p(k,:)); <span class="comment">%将A的列元素按照p(k,:)的元素代表的索引进行交换</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="元胞数组"><a href="#元胞数组" class="headerlink" title="元胞数组"></a>元胞数组</h4><p>MATLAB 中的元胞数组是以其他数组的副本为元素的多维数组。使用 cell 函数可以创建空矩阵的元胞数组。但是，更普遍的做法是，通过将其他内容的集合括入花括号 {} 中来创建元胞数组。花括号还可以与下标配合使用，以便访问各个元胞的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C &#x3D; &#123;A sum(A) prod(prod(A))&#125;</span><br></pre></td></tr></table></figure>
+
+<p>牢记以下两大要点。第一，要检索某个元胞的内容，请在花括号中使用下标。例如，C{1} 检索元胞数组的第一个元素数组A。第二，元胞数组包含其他数组的副本，而不包含指向这些数组的指针。如果随后更改A，C 不会发生变化。</p>
+<h4 id="字符与文本"><a href="#字符与文本" class="headerlink" title="字符与文本"></a>字符与文本</h4><p>单引号<code>&#39;&#39;</code>用于定义<code>char</code>型字符数组，字符在内部作为数字存储，而不会采用浮点格式存储</p>
+<p><code>a = double(s)</code>将字符数组转换为数值数组，该矩阵包含每个字符的 ASCII 代码的数值, <code>char(a)</code>可以将数字转化为字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;hello&#39;</span><br><span class="line">a &#x3D; double(s)</span><br><span class="line">a &#x3D;</span><br><span class="line">72 101 108 108 111</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看ASCII-字符集中的可打印字符"><a href="#查看ASCII-字符集中的可打印字符" class="headerlink" title="查看ASCII 字符集中的可打印字符"></a>查看ASCII 字符集中的可打印字符</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F &#x3D; reshape(32:127,16,6)&#39;;</span><br><span class="line">char(F)</span><br></pre></td></tr></table></figure>
+
+<p>基本 ASCII 字符集中的可打印字符由整数 32:127表示。（小于 32 的整数表示不可打印的控制字符。）</p>
+<h5 id="字符连接"><a href="#字符连接" class="headerlink" title="字符连接"></a>字符连接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">h &#x3D; [s, &#39; world&#39;]</span><br><span class="line">水平联接字符并生成</span><br><span class="line">h &#x3D;</span><br><span class="line">Hello world</span><br><span class="line">语句</span><br><span class="line">v &#x3D; [s; &#39;world&#39;]</span><br><span class="line">垂直联接字符并生成</span><br><span class="line">v &#x3D;</span><br><span class="line">Hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+
+<p>注意，垂直连接时两个单词的长度必须相同，否则会报错</p>
+<p>要操作包含不同长度的行的文本主体，有两种方法，使用填充的字符数组或使用字符向量元胞数组。</p>
+<p>填充的字符数组：char 函数可执行填充，用空格填充。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">S &#x3D; char(&#39;A&#39;,&#39;rolling&#39;,&#39;stone&#39;,&#39;gathers&#39;,&#39;momentum.&#39;)</span><br><span class="line">生成一个 5×9 字符数组：</span><br><span class="line">S &#x3D;</span><br><span class="line">A</span><br><span class="line">rolling</span><br><span class="line">stone</span><br><span class="line">gathers</span><br><span class="line">momentum.</span><br></pre></td></tr></table></figure>
+
+<p>字符向量元胞数组：直接将字符串以分号连接在花括号中，或者用<code>cellstr</code>函数将上述的填充字符数组转化为元胞数组，用<code>char</code>函数将元胞字符数组转化为填充字符数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C &#x3D; &#123;&#39;A&#39;;&#39;rolling&#39;;&#39;stone&#39;;&#39;gathers&#39;;&#39;momentum.&#39;&#125;</span><br><span class="line">创建一个不需要任何填充的 5×1 元胞数组，因为该数组的各行可以具有不同的长度：</span><br><span class="line">C &#x3D;</span><br><span class="line">&#39;A&#39;</span><br><span class="line">&#39;rolling&#39;</span><br><span class="line">&#39;stone&#39;</span><br><span class="line">&#39;gathers&#39;</span><br><span class="line">&#39;momentum.&#39;</span><br></pre></td></tr></table></figure>
+
+<h4 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h4><p>结构体是多维 MATLAB 数组，包含可按文本字段标志符<code>.</code>访问的元素</p>
+<p>与 MATLAB 环境中的所有其他内容一样，结构体也为数组，<strong>数组的每个元素都是一个具有若干字段的结构体</strong>。</p>
+<h5 id="创建结构体"><a href="#创建结构体" class="headerlink" title="创建结构体"></a>创建结构体</h5><p>可以通过添加字段<code>filed</code>和值<code>value</code>直接创建, 例如创建一个具有三个字段的标量结构体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">S.name &#x3D; &#39;Ed Plum&#39;;</span><br><span class="line">S.score &#x3D; 83;</span><br><span class="line">S.grade &#x3D; &#39;B+&#39;</span><br><span class="line"></span><br><span class="line">S &#x3D;</span><br><span class="line">name: &#39;Ed Plum&#39;</span><br><span class="line">score: 83</span><br><span class="line">grade: &#39;B+&#39;</span><br><span class="line"></span><br><span class="line">&gt;&gt; whos S</span><br><span class="line">  Name         Size            Bytes  Class     Attributes</span><br><span class="line"></span><br><span class="line">  student      1x1               540  struct</span><br></pre></td></tr></table></figure>
+
+<h5 id="添加内容"><a href="#添加内容" class="headerlink" title="添加内容"></a>添加内容</h5><p>插入其他元素时可以一次添加一个字段，方法和数组插值一样，用<code>()</code>表明位置，同时用<code>.filed</code>声明赋值的字段名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">S(2).name &#x3D; &#39;Toni Miller&#39;;</span><br><span class="line">S(2).score &#x3D; 91;</span><br><span class="line">S(2).grade &#x3D; &#39;A-&#39;;</span><br></pre></td></tr></table></figure>
+
+
+<p>也可以使用一个语句添加整个元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">S(3) &#x3D; struct(&#39;name&#39;,&#39;Jerry Garcia&#39;,&#39;score&#39;,70,&#39;grade&#39;,&#39;C&#39;)</span><br><span class="line"></span><br><span class="line">&gt;&gt; whos S</span><br><span class="line">  Name      Size            Bytes  Class     Attributes</span><br><span class="line"></span><br><span class="line">  S         1x3              1280  struct </span><br><span class="line"></span><br><span class="line">&gt;&gt; AA &#x3D; 1:3;</span><br><span class="line">&gt;&gt; whos AA</span><br><span class="line">  Name      Size            Bytes  Class     Attributes</span><br><span class="line"></span><br><span class="line">  AA        1x3                24  double</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，不论struct有几个字段，所有字段组成的struct是一个整体元素，在<code>size</code>字段中属于一个整体</p>
+<h5 id="提取struct字段内容"><a href="#提取struct字段内容" class="headerlink" title="提取struct字段内容"></a>提取<code>struct</code>字段内容</h5><p>数值字段</p>
+<p>将欲提取的字段放在<code>[]</code>内，MATLAB 会将该列表中的每一项都存储在数组中，若score本身向量，则会合并所有元素的score字段为一个向量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scores &#x3D; [S.score]</span><br><span class="line">scores &#x3D;</span><br><span class="line">83 91 70</span><br><span class="line"></span><br><span class="line">&gt;&gt; S(3).score &#x3D; 1:4;</span><br><span class="line">&gt;&gt; S(2).score &#x3D; 1:3;</span><br><span class="line">&gt;&gt; S(1).score &#x3D; 1:2;</span><br><span class="line">&gt;&gt; score2 &#x3D; [S.score]</span><br><span class="line">score2 &#x3D;</span><br><span class="line">     1     2     1     2     3     1     2     3     4</span><br></pre></td></tr></table></figure>
+
+<p>文本字段</p>
+<p>对<code>S.name</code> 生成的逗号分隔列表调用 <code>char</code> 函数会自动生成填充的字符数组</p>
+<p>将生成列表的表达式括入花括号<code>{}</code>中，可以根据 <code>name</code> 字段创建元胞数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">names &#x3D; char(S.name)</span><br><span class="line">names &#x3D;</span><br><span class="line">Ed Plum</span><br><span class="line">Toni Miller</span><br><span class="line">Jerry Garcia</span><br><span class="line"></span><br><span class="line">names &#x3D; &#123;S.name&#125;</span><br><span class="line">names &#x3D;</span><br><span class="line">&#39;Ed Plum&#39; &#39;Toni Miller&#39; &#39;Jerry Garcia&#39;</span><br></pre></td></tr></table></figure>
+
+<p>要将结构体数组的每个元素的字段赋值给结构体外部的单独变量，需要指定等号左侧的每个输出，并将其全部括在方括号中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[N1 N2 N3] &#x3D; S.name</span><br><span class="line">N1 &#x3D;</span><br><span class="line">Ed Plum</span><br><span class="line">N2 &#x3D;</span><br><span class="line">Toni Miller</span><br><span class="line">N3 &#x3D;</span><br><span class="line">Jerry Garcia</span><br></pre></td></tr></table></figure>
+
+<h5 id="动态字段名称"><a href="#动态字段名称" class="headerlink" title="动态字段名称"></a>动态字段名称</h5><p>访问结构体中的数据的最常用方法是指定要引用的字段的名称。访问结构体数据的另一种方法是使用动态<br>字段名称。这些名称将字段表示为变量表达式，MATLAB 会在运行时计算这些表达式。此处显示的点-括号<br>语法将 expression 作为动态字段名称：<br>structName.(expression)<br>使用标准 MATLAB 索引语法创建此字段的索引。例如，要在字段名称中计算 expression，并在行 7 中的<br>1 至 25 列内获取该字段的值，请使用<br>structName.(expression)(7,1:25)<br>动态字段名称示例<br>下面显示的 avgscore 函数可用于计算考试的平均分数，并使用动态字段名称检索 testscores 结构体中<br>的信息：<br>function avg = avgscore(testscores, student, first, last)<br>for k = first:last<br>scores(k) = testscores.(student).week(k);<br>end<br>avg = sum(scores)/(last - first + 1);<br>您可以运行此函数，并对动态字段 student 使用不同值。首先，对包含 25 周内的分数的结构体进行初始<br>化：<br>testscores.Ann_Lane.week(1:25) = …<br>[95 89 76 82 79 92 94 92 89 81 75 93 …<br>85 84 83 86 85 90 82 82 84 79 96 88 98];<br>testscores.William_King.week(1:25) = …<br>[87 80 91 84 99 87 93 87 97 87 82 89 …<br>86 82 90 98 75 79 92 84 90 93 84 78 81];<br>现在，运行 avgscore，并在运行时使用动态字段名称为 testscores 结构体提供学生姓名字段：<br>avgscore(testscores, ‘Ann_Lane’, 7, 22)<br>ans =<br>85.2500<br>avgscore(testscores, ‘William_King’, 7, 22)<br>ans =<br>87.7500</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/23/Matlab-Primer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/06/27/MATLAB-Import-and-Export/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            MATLAB Import and Export
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/23/Python-Notes-1-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Python Notes (1): 基础语法</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> kewei
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516124156.jpg" alt="Kewei"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>给我充电吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165413.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165414.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['书声读落三更月，笔阵横开万里云', '驰笔常苦夏日短，展卷不厌冬夜长', '术业宜从勤学起，韶华不为少年留'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
