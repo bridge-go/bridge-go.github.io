@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">72</span>
+            <span class="post-count">260</span>
         </span>
     </span>
 
@@ -110,16 +110,34 @@
       
       <blockquote>
 <p>硬件：Raspberry Pi 3</p>
-<p>主要内容：系统的安装及初始化，必备软件的安装（持续补充）</p>
+<p>主要内容：系统的安装及初始化，必备软件的安装</p>
 <p>参考：<a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi官网</a>的<a href="https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2" target="_blank" rel="noopener">Set up your SD card</a> </p>
 </blockquote>
 <p> <img src="https://www.linuxprobe.com/wp-content/uploads/2016/06/Raspberry-Pi-Logo.png" alt="树莓派最主要制造商以 8.7 亿美元的身价被收购树莓派最主要制造商以 8.7 亿美元的身价被收购"> </p>
 <a id="more"></a>
 
-<h2 id="安装Raspbian系统"><a href="#安装Raspbian系统" class="headerlink" title="安装Raspbian系统"></a>安装Raspbian系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">dateFormat  MMDD</span><br><span class="line">title W-001</span><br><span class="line">axisFormat %m-%d</span><br><span class="line"></span><br><span class="line">section Experiments</span><br><span class="line">AS-100,50-x mM  :done,          exp1, after exp3, 24h</span><br><span class="line">CPC-AS          :crit, done,    exp2, after exp1, 12h</span><br><span class="line">AS 20           :crit,          exp3, 1019, 12h</span><br></pre></td></tr></table></figure>
+<h2 id="安装Raspbian系统"><a href="#安装Raspbian系统" class="headerlink" title="安装Raspbian系统"></a>安装Raspbian系统</h2><p>根据官网说明，安装Raspberry Pi Imager, 选择安装的系统（一般安装推荐的系统即可，也可以安装Ubuntu等系统），选择要写入的SD卡，会自动写入系统。</p>
+<p>树莓派的系统与硬件是分离的，同一张卡可以拔下来给不同的硬件使用，没有太大区别。</p>
+<h3 id="pinout"><a href="#pinout" class="headerlink" title="pinout"></a>pinout</h3><p>安装<a href="https://gpiozero.readthedocs.io/en/stable/installing.html" target="_blank" rel="noopener">GPIO ZERO</a> 后，可以使用<code>pinout</code>命令打印管脚信息在屏幕上，方面在设计时更换管脚。</p>
+<p>First, update your repositories list:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>Then install the package for Python 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>or Python 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python-gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>If you’re using another operating system on your Raspberry Pi, you may need to use pip to install GPIO Zero instead. Install pip using <a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="noopener">get-pip</a> and then type:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>or for Python 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install gpiozero</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="screenfetch"><a href="#screenfetch" class="headerlink" title="screenfetch"></a>screenfetch</h3><p>安装后可以用<code>screenfetch</code>命令打印系统信息，非常好用的小软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screenfetch</span><br></pre></td></tr></table></figure>
 
 
       

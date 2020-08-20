@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    raspberryPi4 |  Kewei
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516140406.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-raspberryPi4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  raspberryPi4
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/08/17/raspberryPi4/" class="article-date">
+  <time datetime="2020-08-17T07:20:11.000Z" itemprop="datePublished">2020-08-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hardware/">Hardware</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>硬件：Raspberry Pi 4</p>
+<p>主要内容：系统的安装及初始化，必备软件的安装和环境搭建（持续补充）</p>
+<p>参考：<a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi官网</a>的<a href="https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2" target="_blank" rel="noopener">Set up your SD card</a> </p>
+</blockquote>
+<p> <img src="https://www.linuxprobe.com/wp-content/uploads/2016/06/Raspberry-Pi-Logo.png" alt="树莓派最主要制造商以 8.7 亿美元的身价被收购树莓派最主要制造商以 8.7 亿美元的身价被收购"> </p>
+<a id="more"></a>
+
+
+
+<blockquote>
+<p>由于主力机由树莓派3迁移到树莓派4B，因此重开一个文档记录</p>
+</blockquote>
+<h2 id="安装Raspbian系统"><a href="#安装Raspbian系统" class="headerlink" title="安装Raspbian系统"></a>安装Raspbian系统</h2><p>根据官网说明，安装Raspberry Pi Imager, 选择安装的系统（一般安装推荐的系统即可，也可以安装Ubuntu等系统），选择要写入的SD卡，会自动写入系统。</p>
+<p>树莓派的系统与硬件是分离的，同一张卡可以拔下来给不同的硬件使用，没有太大区别。</p>
+<h2 id="必备软件"><a href="#必备软件" class="headerlink" title="必备软件"></a>必备软件</h2><h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>树莓派系统自带<code>nano</code>和<code>vi</code>，但还是<code>vim</code>用着顺手</p>
+<p>关于<code>vim</code>的必备插件安装及配置文件可以参考<a href="https://zhangkewei.cool/2020/06/09/WSL-Windows-Terminal打造Win端开发环境/" target="_blank" rel="noopener">WSL + Windows Terminal打造Win端最强终端</a>中的<code>vim</code>部分</p>
+<p>配置文件如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&quot; vundle来管理vim插件</span><br><span class="line">set rtp+&#x3D;~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim</span><br><span class="line">call vundle#begin()</span><br><span class="line">&quot; &quot; 安装插件写在这之后</span><br><span class="line">&quot;</span><br><span class="line">&quot; &quot; let Vundle manage Vundle, required</span><br><span class="line">Plugin &#39;VundleVim&#x2F;Vundle.vim&#39;</span><br><span class="line">Plugin &#39;itchyny&#x2F;lightline.vim&#39;</span><br><span class="line">&quot;</span><br><span class="line">&quot; &quot; 安装插件写在这之前</span><br><span class="line">call vundle#end()            &quot; required</span><br><span class="line">filetype plugin on    &quot; required</span><br><span class="line"></span><br><span class="line">set laststatus&#x3D;2</span><br><span class="line">let g:lightline &#x3D; &#123; &#39;colorscheme&#39;: &#39;powerline&#39;, &#125;</span><br><span class="line"></span><br><span class="line">set tabstop&#x3D;4</span><br><span class="line">set softtabstop&#x3D;4</span><br><span class="line">set shiftwidth&#x3D;4</span><br><span class="line"></span><br><span class="line">&quot;set autoindent</span><br><span class="line">set smartindent</span><br><span class="line"></span><br><span class="line">syntax on</span><br><span class="line">set number</span><br><span class="line">&quot; &quot; 常用命令</span><br><span class="line">&quot; &quot; :PluginList       - 查看已经安装的插件</span><br><span class="line">&quot; &quot; :PluginInstall    - 安装插件</span><br><span class="line">&quot; &quot; :PluginUpdate     - 更新插件</span><br><span class="line">&quot; &quot; :PluginSearch     - 搜索插件，例如 :PluginSearch xml就能搜到xml相关的插件</span><br><span class="line">&quot; &quot; :PluginClean      - 删除插件，把安装插件对应行删除，然后执行这个命令即可</span><br><span class="line">&quot; &quot; h: vundle         - 获取帮助</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>插件不会自动安装</p>
+<p>保存后，需要在vim界面下执行<code>:PluginInstall</code>完成插件安装</p>
+</blockquote>
+<h3 id="pinout"><a href="#pinout" class="headerlink" title="pinout"></a>pinout</h3><p>安装<a href="https://gpiozero.readthedocs.io/en/stable/installing.html" target="_blank" rel="noopener">GPIO ZERO</a> 后，可以使用<code>pinout</code>命令打印管脚信息在屏幕上，方面在设计时更换管脚。</p>
+<p>First, update your repositories list:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>Then install the package for Python 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>or Python 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python-gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>If you’re using another operating system on your Raspberry Pi, you may need to use pip to install GPIO Zero instead. Install pip using <a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="noopener">get-pip</a> and then type:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install gpiozero</span><br></pre></td></tr></table></figure>
+
+<p>or for Python 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install gpiozero</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="screenfetch"><a href="#screenfetch" class="headerlink" title="screenfetch"></a>screenfetch</h3><p>安装后可以用<code>screenfetch</code>命令打印系统信息，非常好用的小软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screenfetch</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p><code>scp</code>命令(secure copy)可以用于本地机器和远程ssh连接机器之间的文件传输：</p>
+<p>将本地文件拷贝到远程机器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将本地当前文件夹下的test.c文件拷贝到树莓派的home&#x2F;projects目录下</span><br><span class="line">scp test.c pi@1.1.1.1:~&#x2F;Projects</span><br></pre></td></tr></table></figure>
+
+<p>从远程机器拷贝到本地：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将树莓派的home&#x2F;projects目录下test.c文件拷贝到本地当前文件夹</span><br><span class="line">scp pi@1.1.1.1:~&#x2F;Projects&#x2F;test.c .</span><br></pre></td></tr></table></figure>
+
+<p>如需对文件夹操作：<code>scp -r</code>命令即可</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="i2c-address"><a href="#i2c-address" class="headerlink" title="i2c address"></a><code>i2c</code> address</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo i2cdetect -y 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Adafruit-ADC"><a href="#Adafruit-ADC" class="headerlink" title="Adafruit ADC"></a>Adafruit ADC</h3><p>install the <a href="https://adafru.it/C1n" target="_blank" rel="noopener">Adafruit CircuitPython ADS1x15</a> library</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install adafruit-circuitpython-ads1x15</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><h3 id="网络来源"><a href="#网络来源" class="headerlink" title="网络来源"></a>网络来源</h3><h4 id="WiFi"><a href="#WiFi" class="headerlink" title="WiFi"></a>WiFi</h4><p>树莓派会记忆网络连接，下次会自动连接。对于校园网的WiFi，也会自动实现网页登录，无需单独打开网页。</p>
+<p>在有显示器的情况下十分方便。</p>
+<h4 id="Ethenet"><a href="#Ethenet" class="headerlink" title="Ethenet"></a>Ethenet</h4><p>可以通过网线直接连接，<strong>无法登录校园网</strong>，无网络连接，但在学校可以获得校内网IP。无需显示器等外设。</p>
+<h4 id="电脑与树莓派通过网线连接"><a href="#电脑与树莓派通过网线连接" class="headerlink" title="电脑与树莓派通过网线连接"></a>电脑与树莓派通过网线连接</h4><p>通过一根网线将笔记本的网络共享给树莓派：</p>
+<p>开始 -&gt; 控制面板 -&gt; 网络和Internet -&gt; 网络和共享中心 -&gt; 查看网络状态和任务 -&gt; 更改适配器设置</p>
+<p>找到笔记本已经连接的WiFi，比如ZJUWLAN，右键属性 -&gt; 共享选项卡 -&gt; 允许其他网络用户通过此计算机的Internet连接来连接（同时需要在家庭网络连接里选上自己的树莓派端口）</p>
+<p>该端口可以通过插拔网线识别，后续可以更名为<code>RPi</code>进行标记</p>
+<h4 id="电脑热点分享网络给树莓派"><a href="#电脑热点分享网络给树莓派" class="headerlink" title="电脑热点分享网络给树莓派"></a>电脑热点分享网络给树莓派</h4><p>步骤同上，区别是选择树莓派连接端口时不选择以太网，选择自己热点的名称。</p>
+<p>如未重命名过，可能是<code>本地连接 *n</code>，此处我的笔记本改为了<code>SHARED WLAN</code>，共享网络时选择这个即可</p>
+<h3 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h3><blockquote>
+<p>SSH连接唯一重要的东西就是树莓派的IP地址</p>
+<p>ssh usrname@ip_address -p portnum</p>
+<p>树莓派用默认端口22就可以，因此可以简化为 ssh pi@ip_address</p>
+</blockquote>
+<h4 id="WiFi-1"><a href="#WiFi-1" class="headerlink" title="WiFi"></a>WiFi</h4><p>WiFi直连时，可以通过屏幕等外设先获取IP，再进行SSH连接，但IP会不定期变化，导致连接断开。网上翻了非常多的资料，最后的结论就是校<strong>园网内无法设置为静态IP</strong>，如果静态IP信息和ZJUWLAN分配的不一致，就无法成功登陆网络，那就无法和笔记本在同一局域网内，无法进行SSH连接。</p>
+<h4 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h4><p>此时无法直接获取树莓派IP，如果需要SSH连接，需要先通过屏幕获取IP地址。</p>
+<p>获取IP后需要在内网条件下才能成功进行SSH连接，不在局域网内无法连接。</p>
+<h4 id="电脑与树莓派通过网线连接-1"><a href="#电脑与树莓派通过网线连接-1" class="headerlink" title="电脑与树莓派通过网线连接"></a>电脑与树莓派通过网线连接</h4><p>可以共享网络，可以根据主机网络分配树莓派IP，是否可以设置静态IP未尝试</p>
+<h4 id="电脑热点分享网络给树莓派-1"><a href="#电脑热点分享网络给树莓派-1" class="headerlink" title="电脑热点分享网络给树莓派"></a>电脑热点分享网络给树莓派</h4><p>可以共享网络，主机给树莓派分配IP。</p>
+<h4 id="断开连接"><a href="#断开连接" class="headerlink" title="断开连接"></a>断开连接</h4><p><strong>终端下：</strong></p>
+<p>方法1：Ctrl+D</p>
+<p>方法2：输入 logout</p>
+<p><strong>vscode remote模式下</strong></p>
+<p>左下角点击连接选项，可以关闭连接</p>
+<h3 id="获取IP地址"><a href="#获取IP地址" class="headerlink" title="获取IP地址"></a>获取IP地址</h3><h4 id="Windows-10"><a href="#Windows-10" class="headerlink" title="Windows 10"></a>Windows 10</h4><p>获取IP地址：<code>powershell</code>下使用命令<code>ipconfig</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ipconfig</span><br><span class="line"></span><br><span class="line">Windows IP 配置</span><br><span class="line"></span><br><span class="line">无线局域网适配器 本地连接* 1:</span><br><span class="line">   媒体状态  . . . . . . . . . . . . : 媒体已断开连接</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line"></span><br><span class="line">无线局域网适配器 WLAN:</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::39da:e6af:837a:c1f3%16</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 10.186.218.162</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.128.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . : 10.186.128.1</span><br><span class="line"></span><br><span class="line">以太网适配器 以太网 6:</span><br><span class="line">   媒体状态  . . . . . . . . . . . . : 媒体已断开连接</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line"></span><br><span class="line">无线局域网适配器 本地连接* 10:</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::5011:9aa9:11b8:358e%42</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 192.168.137.1</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . :</span><br></pre></td></tr></table></figure>
+
+<p>如果需要获取DNS：<code>powershell</code>下使用命令<code>ipconfig /all</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ipconfig &#x2F;all</span><br><span class="line"></span><br><span class="line">Windows IP 配置</span><br><span class="line"></span><br><span class="line">   主机名  . . . . . . . . . . . . . : WWW-PRO</span><br><span class="line">   主 DNS 后缀 . . . . . . . . . . . :</span><br><span class="line">   节点类型  . . . . . . . . . . . . : 混合</span><br><span class="line">   IP 路由已启用 . . . . . . . . . . : 否</span><br><span class="line">   WINS 代理已启用 . . . . . . . . . : 否</span><br><span class="line"></span><br><span class="line">无线局域网适配器 本地连接* 1:</span><br><span class="line">   媒体状态  . . . . . . . . . . . . : 媒体已断开连接</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter</span><br><span class="line">   物理地址. . . . . . . . . . . . . : 28-C6-3F-C2-67-0E</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 是</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line"></span><br><span class="line">无线局域网适配器 WLAN:</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Intel(R) Dual Band Wireless-AC 8265</span><br><span class="line">   物理地址. . . . . . . . . . . . . : 28-C6-3F-C2-67-0D</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 是</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::39da:e6af:837a:c1f3%16(首选)</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 10.186.218.162(首选)</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.128.0</span><br><span class="line">   获得租约的时间  . . . . . . . . . : 2020年8月20日 15:35:10</span><br><span class="line">   租约过期的时间  . . . . . . . . . : 2020年8月20日 22:31:26</span><br><span class="line">   默认网关. . . . . . . . . . . . . : 10.186.128.1</span><br><span class="line">   DHCP 服务器 . . . . . . . . . . . : 10.186.128.1</span><br><span class="line">   DHCPv6 IAID . . . . . . . . . . . : 69781055</span><br><span class="line">   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-21-AD-07-D4-28-C6-3F-C2-67-0D</span><br><span class="line">   DNS 服务器  . . . . . . . . . . . : 10.10.0.21</span><br><span class="line">                                       10.10.2.21</span><br><span class="line">   TCPIP 上的 NetBIOS  . . . . . . . : 已启用</span><br><span class="line"></span><br><span class="line">以太网适配器 以太网 6:</span><br><span class="line">   媒体状态  . . . . . . . . . . . . : 媒体已断开连接</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Sangfor SSL VPN CS Support System VNIC</span><br><span class="line">   物理地址. . . . . . . . . . . . . : 00-FF-20-6F-B4-5B</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 否</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line"></span><br><span class="line">无线局域网适配器 本地连接* 10:</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter #3</span><br><span class="line">   物理地址. . . . . . . . . . . . . : 2A-C6-3F-C2-67-0D</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 否</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::5011:9aa9:11b8:358e%42(首选)</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 192.168.137.1(首选)</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . :</span><br><span class="line">   DHCPv6 IAID . . . . . . . . . . . : 707446335</span><br><span class="line">   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-21-AD-07-D4-28-C6-3F-C2-67-0D</span><br><span class="line">   DNS 服务器  . . . . . . . . . . . : fec0:0:0:ffff::1%1</span><br><span class="line">                                       fec0:0:0:ffff::2%1</span><br><span class="line">                                       fec0:0:0:ffff::3%1</span><br><span class="line">   TCPIP 上的 NetBIOS  . . . . . . . : 已启用</span><br></pre></td></tr></table></figure>
+
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>获取IP地址：<code>ifconfig</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig</span><br><span class="line">eth0: flags&#x3D;4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500</span><br><span class="line">        ether dc:a6:32:3b:68:08  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags&#x3D;73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 13345  bytes 30528954 (29.1 MiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 13345  bytes 30528954 (29.1 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">wlan0: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.137.219  netmask 255.255.255.0  broadcast 192.168.137.255</span><br><span class="line">        inet6 fe80::794d:d5c8:54d3:9be5  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether dc:a6:32:3b:68:09  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 63649  bytes 79000448 (75.3 MiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 47496  bytes 25108774 (23.9 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
+
+<p>获取DNS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;etc&#x2F;resolv.conf</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/17/raspberryPi4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raspberry-Pi/" rel="tag">Raspberry Pi</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/08/20/windows-terminal/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Windows Terminal
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/04/CPC%E6%A0%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">CPC标定数据处理程序</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> kewei
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516124156.jpg" alt="Kewei"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>给我充电吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165413.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165414.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['书声读落三更月，笔阵横开万里云', '驰笔常苦夏日短，展卷不厌冬夜长', '术业宜从勤学起，韶华不为少年留'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

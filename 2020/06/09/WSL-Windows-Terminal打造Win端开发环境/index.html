@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    WSL + Windows Terminal打造Win端最强终端 |  Kewei
+    WSL - Windows Subsystem for Linux |  Kewei
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  WSL + Windows Terminal打造Win端最强终端
+  WSL - Windows Subsystem for Linux
 </h1>
  
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2k</span>
+            <span class="post-count">1.7k</span>
         </span>
     </span>
 
@@ -83,7 +83,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">9 分钟</span>
+            <span class="post-count">7 分钟</span>
         </span>
     </span>
 </div>
@@ -125,15 +125,23 @@
 <p>参考：<a href="https://printempw.github.io/wsl-guide/" target="_blank" rel="noopener">WSL配置指北</a></p>
 <a id="more"></a> 
 
-
-
-<h3 id="安装WSL"><a href="#安装WSL" class="headerlink" title="安装WSL"></a>安装WSL</h3><p><strong>第一步</strong>，打开「控制面板」中的「程序与功能」，点击左侧边栏的「启用或关闭 Windows 功能」选项，在弹出的窗口中勾选「适用于 Linux 的 Windows 子系统」，然后点击确定（可能需要重启）。</p>
+<h2 id="WSL-Windows-Subsystem-for-Linux"><a href="#WSL-Windows-Subsystem-for-Linux" class="headerlink" title="WSL - Windows Subsystem for Linux"></a>WSL - Windows Subsystem for Linux</h2><h3 id="安装WSL"><a href="#安装WSL" class="headerlink" title="安装WSL"></a>安装WSL</h3><p><strong>第一步</strong>，打开「控制面板」中的「程序与功能」，点击左侧边栏的「启用或关闭 Windows 功能」选项，在弹出的窗口中勾选「适用于 Linux 的 Windows 子系统」，然后点击确定（可能需要重启）。</p>
 <p>如果你懒得用 GUI，也可以直接在 PowerShell 中以管理员权限执行命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows</span><br></pre></td></tr></table></figure>
 
 <p> <strong>第二步</strong>，打开 Microsoft Store，搜索「WSL」。挑选一个你喜欢的 Linux 发行版，然后点击安装。（截至目前，商店中可用的发行版有 Ubuntu、openSUSE、SUSE Linux Enterprise Server、Debian 以及 Kali Linux。） </p>
 <p><strong>第三步</strong>，在开始菜单中找到你刚刚安装的发行版，打开它。等待几分钟的初始化过程，设定好用户名与密码后（不需要与 Windows 的相同，用过 Linux 的选手应该都懂的）就会自动进入 Linux 环境。</p>
 <p>至此，完成了 WSL 的安装。</p>
+<h4 id="关闭sudo密码"><a href="#关闭sudo密码" class="headerlink" title="关闭sudo密码"></a>关闭sudo密码</h4><p>打开 <code>visudo</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure>
+
+<p>找到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL&#x3D;(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL&#x3D;(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+
+<p>这样所有sudo组内的用户使用sudo时就不需要密码了.</p>
 <h3 id="WSL-Ubuntu换源"><a href="#WSL-Ubuntu换源" class="headerlink" title="WSL Ubuntu换源"></a>WSL Ubuntu换源</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>新安装了<code>WSL-Ubuntu</code>默认的<code>apt</code>源是国外的源。国内访问速度会很慢。所以更改国内源是非常有必要的。</p>
 <h4 id="备份list文件"><a href="#备份list文件" class="headerlink" title="备份list文件"></a>备份list文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/apt/</span><br><span class="line">sudo cp sources.list sources.list.bak</span><br></pre></td></tr></table></figure>
 
@@ -149,21 +157,21 @@
 
 
 
-<h3 id="安装aptitude"><a href="#安装aptitude" class="headerlink" title="安装aptitude"></a>安装aptitude</h3><blockquote>
+<h3 id="必备软件"><a href="#必备软件" class="headerlink" title="必备软件"></a>必备软件</h3><h4 id="安装aptitude"><a href="#安装aptitude" class="headerlink" title="安装aptitude"></a>安装aptitude</h4><blockquote>
 <p>WSL Ubuntu 20.04LTS安装aptitude时也遇到依赖问题，可见坑不小，18.04相对稳定了</p>
 </blockquote>
-<p><code>aptitude</code>比<code>apt-get</code>更智能，尤其在遇到依赖问题时，用aptitude可以更开解决问题</p>
+<p><code>aptitude</code>比<code>apt-get</code>更智能，尤其在遇到依赖问题时，用aptitude可以解决问题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install aptitude</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><h4 id="修改vim为默认编辑器"><a href="#修改vim为默认编辑器" class="headerlink" title="修改vim为默认编辑器"></a>修改vim为默认编辑器</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install vim <span class="comment">//安装vim</span></span><br><span class="line"></span><br><span class="line">sudo update-alternatives --<span class="built_in">config</span> editor <span class="comment">//输入vim对应的行号,设置为默认编辑器</span></span><br><span class="line"><span class="comment">// vim.basic 比 vim.tiny功能更全，但相应的启动速度更慢</span></span><br></pre></td></tr></table></figure>
+<h4 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h4><h5 id="修改vim为默认编辑器"><a href="#修改vim为默认编辑器" class="headerlink" title="修改vim为默认编辑器"></a>修改vim为默认编辑器</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install vim <span class="comment">//安装vim</span></span><br><span class="line"></span><br><span class="line">sudo update-alternatives --<span class="built_in">config</span> editor <span class="comment">//输入vim对应的行号,设置为默认编辑器</span></span><br><span class="line"><span class="comment">// vim.basic 比 vim.tiny功能更全，但相应的启动速度更慢</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="配置vim"><a href="#配置vim" class="headerlink" title="配置vim"></a>配置vim</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;安装插件管理器</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;VundleVim&#x2F;Vundle.vim.git ~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim </span><br><span class="line">&#x2F;&#x2F; sudo apt install git,可以用来安装git</span><br><span class="line"></span><br><span class="line">sudo vim ~&#x2F;.vimrc	&#x2F;&#x2F;新建配置文件</span><br></pre></td></tr></table></figure>
+<h5 id="配置vim"><a href="#配置vim" class="headerlink" title="配置vim"></a>配置vim</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;安装插件管理器</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;VundleVim&#x2F;Vundle.vim.git ~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim </span><br><span class="line">&#x2F;&#x2F; sudo apt install git,可以用来安装git</span><br><span class="line"></span><br><span class="line">sudo vim ~&#x2F;.vimrc	&#x2F;&#x2F;新建配置文件</span><br></pre></td></tr></table></figure>
 <p>下面整段复制粘贴至~/.vimrc文件，开始使用插件管理器Vundle</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&quot; vundle来管理vim插件</span><br><span class="line">set rtp+&#x3D;~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim</span><br><span class="line">call vundle#begin()</span><br><span class="line">&quot; 安装插件写在这之后</span><br><span class="line"></span><br><span class="line">&quot; let Vundle manage Vundle, required</span><br><span class="line">Plugin &#39;VundleVim&#x2F;Vundle.vim&#39;</span><br><span class="line"></span><br><span class="line">&quot; 安装插件写在这之前</span><br><span class="line">call vundle#end()            &quot; required</span><br><span class="line">filetype plugin on    &quot; required</span><br><span class="line"></span><br><span class="line">&quot; 常用命令</span><br><span class="line">&quot; :PluginList       - 查看已经安装的插件</span><br><span class="line">&quot; :PluginInstall    - 安装插件</span><br><span class="line">&quot; :PluginUpdate     - 更新插件</span><br><span class="line">&quot; :PluginSearch     - 搜索插件，例如 :PluginSearch xml就能搜到xml相关的插件</span><br><span class="line">&quot; :PluginClean      - 删除插件，把安装插件对应行删除，然后执行这个命令即可</span><br><span class="line">&quot; h: vundle         - 获取帮助</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加插件vim-lightline"><a href="#添加插件vim-lightline" class="headerlink" title="添加插件vim-lightline"></a>添加插件vim-lightline</h4><p><code>vim-lightline</code> 是一个简单好安装的状态栏</p>
+<h5 id="添加插件vim-lightline"><a href="#添加插件vim-lightline" class="headerlink" title="添加插件vim-lightline"></a>添加插件vim-lightline</h5><p><code>vim-lightline</code> 是一个简单好安装的状态栏</p>
 <p>安装方法： 使用Vundle管理器，在<code>~/.vimrc</code>中添加以下内容，</p>
 <blockquote>
 <p>重要：插件不会自动运行</p>
@@ -171,22 +179,14 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 把这句加到vundle函数里：</span><br><span class="line">Plugin &#39;itchyny&#x2F;lightline.vim&#39;</span><br><span class="line"></span><br><span class="line"># 把这两句加到函数外面任意地方：</span><br><span class="line">set laststatus&#x3D;2</span><br><span class="line">let g:lightline &#x3D; &#123; &#39;colorscheme&#39;: &#39;powerline&#39;, &#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h4><p>添加在<code>.vimrc</code>文件最后即可</p>
+<h5 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h5><p>添加在<code>.vimrc</code>文件最后即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set number</span><br></pre></td></tr></table></figure>
 
-<h4 id="设置tab为4个空格-amp-设置自动缩进"><a href="#设置tab为4个空格-amp-设置自动缩进" class="headerlink" title="设置tab为4个空格 &amp; 设置自动缩进"></a>设置tab为4个空格 &amp; 设置自动缩进</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set tabstop&#x3D;4</span><br><span class="line">set softtabstop&#x3D;4</span><br><span class="line">set shiftwidth&#x3D;4</span><br><span class="line"></span><br><span class="line">&quot;set autoindent</span><br><span class="line">set smartindent</span><br></pre></td></tr></table></figure>
+<h5 id="设置tab为4个空格-amp-设置自动缩进"><a href="#设置tab为4个空格-amp-设置自动缩进" class="headerlink" title="设置tab为4个空格 &amp; 设置自动缩进"></a>设置tab为4个空格 &amp; 设置自动缩进</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set tabstop&#x3D;4</span><br><span class="line">set softtabstop&#x3D;4</span><br><span class="line">set shiftwidth&#x3D;4</span><br><span class="line"></span><br><span class="line">&quot;set autoindent</span><br><span class="line">set smartindent</span><br></pre></td></tr></table></figure>
 
-<h3 id="关闭sudo密码"><a href="#关闭sudo密码" class="headerlink" title="关闭sudo密码"></a>关闭sudo密码</h3><p>打开 <code>visudo</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure>
 
-<p>找到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL&#x3D;(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
 
-<p>修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL&#x3D;(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
-
-<p>这样所有sudo组内的用户使用sudo时就不需要密码了.</p>
-<h3 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h3><h4 id="安装Zsh"><a href="#安装Zsh" class="headerlink" title="安装Zsh"></a>安装Zsh</h4><p>终端采用<code>zsh</code>和<code>oh-my-zsh</code>, 既美观又简单易用</p>
+<h4 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h4><h5 id="安装Zsh"><a href="#安装Zsh" class="headerlink" title="安装Zsh"></a>安装Zsh</h5><p>终端采用<code>zsh</code>和<code>oh-my-zsh</code>, 既美观又简单易用</p>
 <p>首先, 安装<code>zsh</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure>
 
@@ -197,7 +197,7 @@
 
 <p>重启后生效.</p>
 <p>有可能出现无法链接到，多次尝试后成功，应该是GW问题。</p>
-<h4 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h4><p>安装插件<code>highlight</code>, <strong>高亮语法</strong>:</p>
+<h5 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h5><p>安装插件<code>highlight</code>, <strong>高亮语法</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.oh-my-zsh&#x2F;custom&#x2F;plugins </span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-syntax-highlighting.git</span><br></pre></td></tr></table></figure>
 
 <p>在<code>Oh-my-zsh</code>的配置文件中<code>~/.zshrc</code>中添加插件</p>
@@ -207,15 +207,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.oh-my-zsh&#x2F;custom&#x2F;plugins&#x2F;zsh-syntax-highlighting&#x2F;highlighters&#x2F;main&#x2F;</span><br><span class="line">vim main-highlighter.zsh</span><br><span class="line"></span><br><span class="line">fg&#x3D;yellow,bold &#x2F;&#x2F;上面打开的文件62行，会修改关键字 cd ls等为黄色加粗</span><br></pre></td></tr></table></figure>
 
 <p>重新打开终端即可生效！</p>
-<h3 id="Windows-Terminal配置"><a href="#Windows-Terminal配置" class="headerlink" title="Windows Terminal配置"></a>Windows Terminal配置</h3><h4 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;acrylicOpacity&quot; : 0.5,</span><br><span class="line">    &quot;guid&quot;: &quot;&#123;c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40&#125;&quot;,</span><br><span class="line">    &quot;hidden&quot;: false,</span><br><span class="line">    &quot;name&quot;: &quot;Ubuntu&quot;,</span><br><span class="line">    &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;,</span><br><span class="line">    &#x2F;&#x2F; &quot;commandline&quot;: &quot;wsl -d Ubuntu-20.04 ~&quot;, &#x2F;&#x2F;权限不足</span><br><span class="line">    &#x2F;&#x2F; &quot;startingDirectory&quot;: &quot;&#x2F;&#x2F;wsl$&#x2F;ubuntu20.04&#x2F;home&#x2F;kewei&quot;,</span><br><span class="line">    &quot;background&quot; : &quot;#000000&quot;,</span><br><span class="line">    &quot;closeOnExit&quot; : true,</span><br><span class="line">    &quot;colorScheme&quot; : &quot;Tango Dark&quot;, </span><br><span class="line">    &quot;cursorColor&quot; : &quot;#20AB20&quot;,</span><br><span class="line">    &quot;cursorShape&quot; : &quot;filledBox&quot;,</span><br><span class="line">    &#x2F;&#x2F; &quot;cursorShape&quot; : &quot;vintage&quot;,</span><br><span class="line">    &quot;fontFace&quot; : &quot;Monaco&quot;,</span><br><span class="line">    &quot;fontSize&quot; : 12,</span><br><span class="line">    &quot;historySize&quot; : 9001,</span><br><span class="line">    &quot;icon&quot; : &quot;C:\\Users\\Kewei Zhang\\Coder\\icons\\ubuntu.png&quot;,</span><br><span class="line">    &quot;padding&quot; : &quot;8, 8, 8, 8&quot;,</span><br><span class="line">    &quot;snapOnInput&quot; : true,</span><br><span class="line">    &quot;useAcrylic&quot; : true</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;Tango Dark&quot;,</span><br><span class="line">    &quot;black&quot;: &quot;#000000&quot;,</span><br><span class="line">    &quot;red&quot;: &quot;#cc0000&quot;,</span><br><span class="line">    &quot;green&quot;: &quot;#4e9a06&quot;,</span><br><span class="line">    &quot;yellow&quot;: &quot;#c4a000&quot;,</span><br><span class="line">    &quot;blue&quot;: &quot;#3465a4&quot;,</span><br><span class="line">    &quot;purple&quot;: &quot;#75507b&quot;,</span><br><span class="line">    &quot;cyan&quot;: &quot;#06989a&quot;,</span><br><span class="line">    &quot;white&quot;: &quot;#d3d7cf&quot;,</span><br><span class="line">    &quot;brightBlack&quot;: &quot;#555753&quot;,</span><br><span class="line">    &quot;brightRed&quot;: &quot;#ef2929&quot;,</span><br><span class="line">    &quot;brightGreen&quot;: &quot;#8ae234&quot;,</span><br><span class="line">    &quot;brightYellow&quot;: &quot;#fce94f&quot;,</span><br><span class="line">    &quot;brightBlue&quot;: &quot;#729fcf&quot;,</span><br><span class="line">    &quot;brightPurple&quot;: &quot;#ad7fa8&quot;,</span><br><span class="line">    &quot;brightCyan&quot;: &quot;#34e2e2&quot;,</span><br><span class="line">    &quot;brightWhite&quot;: &quot;#eeeeec&quot;,</span><br><span class="line">    &quot;background&quot;: &quot;#000000&quot;,</span><br><span class="line">    &quot;foreground&quot;: &quot;#D3D7CF&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screenfetch</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200609232219.png" alt=""></p>
 <h3 id="搭建C-C-开发环境"><a href="#搭建C-C-开发环境" class="headerlink" title="搭建C/C++ 开发环境"></a>搭建C/C++ 开发环境</h3><p>Ubuntu默认不安装C编译器，此处通过安装<code>build-essential</code>配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
 
@@ -307,7 +298,7 @@
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/" rel="tag">WSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-Terminal/" rel="tag">Windows Terminal</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/" rel="tag">WSL</a></li></ul>
 
 
     </footer>
@@ -318,11 +309,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/06/23/Python-Notes-1-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-nav-link">
+      <a href="/2020/06/23/Igor-CurveFit/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Python Notes (1): 基础语法
+            Igor CPC标定数据处理程序
           
         </div>
       </a>
