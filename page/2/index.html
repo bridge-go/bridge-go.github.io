@@ -76,6 +76,305 @@
     
     
     
+    <article id="post-WSL-Windows-Terminal打造Win端开发环境" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+    >WSL - Windows Subsystem for Linux</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2020-06-09T12:40:41.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System/">System</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>原因：</p>
+<ul>
+<li><p>需求-想要在Linux下开发程序（至少有一个正常的linux环境用于试验）；</p>
+</li>
+<li><p>尝试-VMware虚拟机装Ubuntu20,Ubuntu18, 两个版本都遇到大小写切换问题，试了很多方法，无法解决。应该是虚拟机软件问题。</p>
+</li>
+<li><p>初见-WSL(Window Subsystem for Linux)环境安装Ubuntu 20.04 LTS版本，但在安装build-essential时始终无法解决层层嵌套的依赖问题，卸载！</p>
+</li>
+<li><p>完成-WSL安装Ubuntu 18.04 LTS版本后顺利完成各项配置</p>
+</li>
+</ul>
+<p>Window Terminal虽然还处理beta版本，但是功能够用，美观程度尚可。简单配置后配合WSL可以作为window的最强终端。这得益于WSL的应用是系统级的，不局限于Ubuntu的home目录。</p>
+</blockquote>
+<p>参考：<a href="https://printempw.github.io/wsl-guide/" target="_blank" rel="noopener">WSL配置指北</a></p>
+      
+      <a class="article-more-link" href="/2020/06/09/WSL-Windows-Terminal%E6%89%93%E9%80%A0Win%E7%AB%AF%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/" rel="tag">WSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-linux-command" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/16/linux-command/"
+    >Linux常用命令</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/16/linux-command/" class="article-date">
+  <time datetime="2020-05-16T15:00:38.000Z" itemprop="datePublished">2020-05-16</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">581</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h3 id="查看磁盘空间"><a href="#查看磁盘空间" class="headerlink" title="查看磁盘空间"></a>查看磁盘空间</h3><blockquote>
+<p>Linux 查看磁盘空间可以使用 <code>df</code> 和 <code>du</code></p>
+<p><code>df -h</code>: 查看每个根路径的分区大小</p>
+<p><code>du -sh folderName</code>: 返回该目录的大小</p>
+<p><code>du -h folderName</code>: 查看指定文件夹下的所有文件大小（包含子文件夹）</p>
+</blockquote>
+      
+      <a class="article-more-link" href="/2020/05/16/linux-command/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Raspberry-setup" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/16/Raspberry-setup/"
+    >Raspberry Pi 3B Setup</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/16/Raspberry-setup/" class="article-date">
+  <time datetime="2020-05-16T14:29:22.000Z" itemprop="datePublished">2020-05-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hardware/">Hardware</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">260</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>硬件：Raspberry Pi 3</p>
+<p>主要内容：系统的安装及初始化，必备软件的安装</p>
+<p>参考：<a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi官网</a>的<a href="https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2" target="_blank" rel="noopener">Set up your SD card</a> </p>
+</blockquote>
+<p> <img src="https://www.linuxprobe.com/wp-content/uploads/2016/06/Raspberry-Pi-Logo.png" alt="树莓派最主要制造商以 8.7 亿美元的身价被收购树莓派最主要制造商以 8.7 亿美元的身价被收购"> </p>
+      
+      <a class="article-more-link" href="/2020/05/16/Raspberry-setup/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raspberry-Pi/" rel="tag">Raspberry Pi</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-python-note3" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 

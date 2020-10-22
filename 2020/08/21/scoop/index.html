@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Scoop、Winget等管理 Windows 软件 |  Kewei
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516140406.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-scoop" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Scoop、Winget等管理 Windows 软件
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/08/21/scoop/" class="article-date">
+  <time datetime="2020-08-21T04:48:41.000Z" itemprop="datePublished">2020-08-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/System/">System</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>Scoop</p>
+<p>Chocolatey</p>
+<p>Winget</p>
+</blockquote>
+<a id="more"></a>
+
+
+
+<p>包管理系统，能帮助我们方便快捷、干净利落的管理软件。</p>
+<p><code>Homebrew</code> 是 <code>macOS</code> 上体验最佳的软件包管理，</p>
+<p><strong>推荐阅读：</strong><a href="https://sspai.com/post/42924" target="_blank" rel="noopener">《像 Mac 高手一样管理应用，从 Homebrew 开始》</a></p>
+<h2 id="Scoop"><a href="#Scoop" class="headerlink" title="Scoop"></a>Scoop</h2><blockquote>
+<p> Scoop 可能是 Windows 上体验最好的「包管理器」</p>
+</blockquote>
+<p>作为一个包管理器，最基础，也是最重要的功能就是<strong>安装软件</strong>。 Windows 环境下安装软件繁琐，尤其是一些编程相关的开源软件，借助包管理器非常方便</p>
+<p>Scoop 等一系列包管理器的诞生，第一大便利就是省去繁琐的「搜索 - 下载 - 安装」的步骤，让我们能够通过「一行代码」急速安装。</p>
+<p>同时，用 Scoop 来安装和管理我们的软件：</p>
+<ul>
+<li>集搜索、下载、安装、更新软件于一体：极大的降低了安装维护一个软件的成本，我们甚至不必在软件本身的复杂菜单中寻找那个更新按钮来更新软件自己</li>
+<li>将软件干干净净的安装到电脑的「用户文件夹」下：这样既不会污染路径也不会请求不必要的权限（UAC）</li>
+<li>在卸载软件的时候，能够尽量清空软件在电脑上存储的任何数据和痕迹</li>
+</ul>
+<p>特别的，S<strong>coop 最适合安装那种干净、小巧、开源的软件</strong>。并且，Scoop 也极度适合为开发者配置开发环境，不过这些很多都涉及到进阶使用技巧。下面我们先从基础的安装方法开始介绍如何「像 Windows 高手一样管理应用，从 Scoop 开始」。</p>
+<h3 id="Scoop-的安装配置"><a href="#Scoop-的安装配置" class="headerlink" title="Scoop 的安装配置"></a>Scoop 的安装配置</h3><h4 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h4><ul>
+<li>Windows 版本不低于 Windows 7</li>
+<li>Windows 中的 PowerShell 版本不低于 PowerShell 3</li>
+<li>你能 <strong>正常、快速</strong> 的访问 GitHub 并下载上面的资源</li>
+<li>你的 Windows 用户名为英文（Windows 用户环境变量中路径值不支持中文字符）</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>打开 PowerShell</li>
+</ol>
+<ol start="2">
+<li>在 PowerShell 中输入下面内容，保证允许本地脚本的执行：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set-executionpolicy remotesigned -scope currentuser</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行下面的命令安装 Scoop：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iex (new-object net.webclient).downloadstring(&#39;https:&#x2F;&#x2F;get.scoop.sh&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>静待脚本执行完成就可以了，安装成功后，让我们尝试一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop help</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200821161747.png" alt=""></p>
+<h4 id="使用帮助"><a href="#使用帮助" class="headerlink" title="使用帮助"></a>使用帮助</h4><p><code>scoop help</code> 这个命令就是 Scoop 的使用说明书，如果我们记不住某个命令怎么执行，也可以通过 <code>scoop help</code> 来唤起这个命令参考说明。</p>
+<h4 id="可能存在问题"><a href="#可能存在问题" class="headerlink" title="可能存在问题"></a>可能存在问题</h4><p>安装时可能报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\STAR&gt; iex (new-object net.webclient).downloadstring(&#39;https:&#x2F;&#x2F;get.scoop.sh&#39;)</span><br><span class="line">使用“1”个参数调用“DownloadString”时发生异常:“基础连接已经关闭: 发送时发生错误。”</span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line">+ iex (new-object net.webclient).downloadstring(&#39;https:&#x2F;&#x2F;get.scoop.sh&#39;)</span><br><span class="line">+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException</span><br><span class="line">    + FullyQualifiedErrorId : WebException问</span><br></pre></td></tr></table></figure>
+
+<p>问题原因：powershell 无法链接到远程下载scoop文件导致安装失败</p>
+<p>解决：确保浏览器在能访问到<a href="https://get.scoop.sh" target="_blank" rel="noopener">Scoop软件地址</a>，翻墙解决问题</p>
+<h3 id="Scoop-使用方法"><a href="#Scoop-使用方法" class="headerlink" title="Scoop 使用方法"></a>Scoop 使用方法</h3><h4 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h4><p>Scoop 命令的设计很简单，是「<code>scoop</code> + 动作 + 对象」的语法。其中「对象」是可省略的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200821161926.png" alt=""></p>
+<p>最常用的几个基础动作有这些：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🌟search</td>
+<td>搜索软件名</td>
+</tr>
+<tr>
+<td>🌟install</td>
+<td>安装软件</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新软件</td>
+</tr>
+<tr>
+<td>🌟status</td>
+<td>查看软件状态</td>
+</tr>
+<tr>
+<td>uninstall</td>
+<td>卸载软件</td>
+</tr>
+<tr>
+<td>info</td>
+<td>查看软件详情</td>
+</tr>
+<tr>
+<td>home</td>
+<td>打开软件主页</td>
+</tr>
+</tbody></table>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>我们想要搜索一下有没有 Firefox 浏览器：<code>scoop search firefox</code></p>
+<p><img src="https://cdn.sspai.com/2019/01/11/8dcf81f085033a9608d5ffb4090b762e.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="img"></p>
+<ul>
+<li>我们想要安装 aria2 下载器（我下载过 aria2，所以截图和你的显示可能不太一样）：<code>scoop install aria2</code> </li>
+</ul>
+<p><img src="https://cdn.sspai.com/2019/01/11/721febd364efc01d06d334e9188648a0.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="img"></p>
+<ul>
+<li>我们想要看看 Typora 的主页：<code>scoop home typora</code></li>
+</ul>
+<p><img src="https://cdn.sspai.com/2019/01/11/354456ba818d4ecfeb598f340fd3a987.gif" alt="img"></p>
+<h4 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h4><p>那么现在安装软件的流程就变成了：</p>
+<ol>
+<li><code>scoop search 软件名</code> </li>
+<li><code>scoop install 搜索结果中符合条件的那个</code></li>
+</ol>
+<p>当然 Scoop 肯定不止这些命令可以折腾，更多的进阶命令和使用方法可以参考 <a href="https://github.com/lukesampson/scoop/wiki" target="_blank" rel="noopener">Scoop Wiki</a></p>
+<h3 id="Scoop-把软件安装在哪儿？"><a href="#Scoop-把软件安装在哪儿？" class="headerlink" title="Scoop 把软件安装在哪儿？"></a>Scoop 把软件安装在哪儿？</h3><p>这就是 Scoop 设计最为精致的地方所在了，也是 Scoop 超过 Chocolatey 等更知名的 Windows 软件包管理器的原因。</p>
+<p>Scoop 和 Homebrew 对软件包安装位置有着相同的处理哲学：「下载、安装在用户文件夹下」。具体来讲：</p>
+<ul>
+<li>Scoop 在你的用户根目录（一般是 C:\Users\用户名）下创建了一个名为 scoop 的文件夹，并默认将软件下载安装到这个文件夹下</li>
+<li>Scoop 将软件安装到一个相对隔离的环境下（Each program you install is isolated and independent），从而保证环境的统一和路径不被污染</li>
+</ul>
+<p>可以看到，<code>scoop</code> 文件夹下的 <code>apps</code> 存放有安装的所有应用。值得一提的是：<code>scoop</code> 是通过 <code>shim</code> 来软链接一些应用，这样的设计让应用之间不会互相干扰，十分方便。</p>
+<h2 id="Winget"><a href="#Winget" class="headerlink" title="Winget"></a>Winget</h2><p>软件包管理工具，是电脑中自动安装、配置、卸载和升级软件包的工具。基于命令行的包管理工具已经在 *NIX 世界中被广泛使用，不论是 macOS 的 Homebrew，还是 Linux 各大发行版自己的包管理（APT、Yum、Pacman……），它们都不仅有着完善的使用机制，还有丰富的软件包生态，是 *NIX 系统安装、管理软件包的不二之选。</p>
+<p>Windows 在「包管理工具」方面则一直乏善可陈。社区的努力让 Windows 有了 Chocolatey 以及<a href="https://sspai.com/post/52496" target="_blank" rel="noopener">我曾经极力推荐的 Scoop</a>，Windows 自己在历史上也曾经推出过具有「包管理工具」类似功能的 OneGet 和 NuGet。但是前二者一直依赖社区维护者的用爱发电，后二者则更强调开发环境的软件安装，没有提供日常用户所使用的软件，都不尽完美。</p>
+<p>在刚刚结束的 <a href="https://mybuild.microsoft.com/" target="_blank" rel="noopener">Microsoft Build 2020</a> 上，微软终于发布了面向广大 Windows 普通用户的 Windows 官方「包管理工具」—— Windows Package Manager，也就是 WinGet。有了 WinGet，Windows 用户终于可以<strong>通过官方途径</strong>来在命令行环境下管理软件了。</p>
+<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>WinGet 支持 Windows 10 1709 及以上版本，现在使用 Windows 10 的同学们就可以直接下载安装。官方提供了下面的几种安装方法：</p>
+<h4 id="通过-Microsoft-Store-下载"><a href="#通过-Microsoft-Store-下载" class="headerlink" title="通过 Microsoft Store 下载"></a>通过 Microsoft Store 下载</h4><p>目前 WinGet 还在 Preview 阶段，因此如果你想用官方的渠道安装 WinGet，那么你需要：</p>
+<ul>
+<li>或是加入 <a href="https://insider.windows.com/" target="_blank" rel="noopener">Windows 10 Insider</a>，并下载安装 Windows Insider 版本的系统</li>
+<li>或是通过<a href="http://aka.ms/winget-InsiderProgram" target="_blank" rel="noopener">官方注册通道</a>来将自己加入 WinGet Preview flight ring</li>
+</ul>
+<p>之后，你的系统上面就应该出现（命令行环境下的）WinGet 本体，并可以通过 Microsoft Store 同步更新。</p>
+<h4 id="通过-GitHub-Release-手动安装"><a href="#通过-GitHub-Release-手动安装" class="headerlink" title="通过 GitHub Release 手动安装"></a>通过 GitHub Release 手动安装</h4><p>另外，你也可以直接去 <a href="https://github.com/microsoft/winget-cli" target="_blank" rel="noopener">WinGet 的官方 GitHub 仓库</a>，<a href="https://github.com/microsoft/winget-cli/releases" target="_blank" rel="noopener">在 Release 页面</a>手动下载 WinGet 的安装程序进行手动安装。</p>
+<h3 id="操作和命令"><a href="#操作和命令" class="headerlink" title="操作和命令"></a>操作和命令</h3><p>安装好 WinGet 之后，我们就可以在 PowerShell 或者 CMD 中用 <code>winget</code> 命令调用它了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200821162615.png" alt=""></p>
+<p>直接运行命令 <code>winget</code>，WinGet 会给我们展示自己的一些基础操作，包括安装软件、显示软件信息、显示应用源、搜索软件、验证安装程序等等。</p>
+<h4 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h4><p>安装软件是 <code>winget install {软件名称}</code> </p>
+<p>安装过程上，WinGet 安装的是 <code>exe</code> 文件，而 Scoop 安装了 NuGet 的 <code>.nupkg</code> 文件。二者都是 Windows 上常见的软件安装文件。界面上，WinGet 的下载进度条比较酷炫，而 Scoop 使用的依旧是「字符进度条」，简单淳朴。</p>
+<p>另外，WinGet 还有一个比较骚的进度条，在刚刚安装命令之后加上 <code>--rainbow</code> 的参数，即可解锁彩虹进度条！（🌈 净搞这些有的没的 (/▽＼)）</p>
+<p><img src="https://cdn.sspai.com/editor/u_spencerwoo/15900014481593.gif" alt="使用 WinGet 下载安装程序的彩虹进度条与下载全过程"></p>
+<h4 id="显示软件信息"><a href="#显示软件信息" class="headerlink" title="显示软件信息"></a>显示软件信息</h4><p>同样的，WinGet 和 Scoop 都有支持显示某一个软件的详细信息。这里，WinGet 使用的命令是：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget show postman</span><br></pre></td></tr></table></figure>
+
+<p>而 Scoop 与之对应的命令为：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop info postman</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h4><p>WinGet 和 Scoop 也一样支持搜索某一软件。使用的是相同的 <code>search {软件名称}</code> 的命令。比如，搜索 Steam：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># WinGet 搜索 Steam</span></span><br><span class="line">winget search steam</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scoop 搜索 Steam</span></span><br><span class="line">scoop search steam</span><br></pre></td></tr></table></figure>
+
+<p>当然，WinGet 和 Scoop 都是关键词匹配搜索，由于 Scoop 目前的软件库比较丰富，因此搜索到的东西也比 WinGet 多一些。另外，我发现 WinGet 搜索速度要比 Scoop 快一些，可能是由于 Scoop 需要联网遍历整个软件 bucket，导致搜索速度没有那么快。</p>
+<p>除了上面介绍的三个命令以外，WinGet 还有方便 WinGet 软件源开发管理人员使用的 <code>validate</code> 命令和 <code>hash</code> 命令等等。</p>
+<h2 id="Chocolatey"><a href="#Chocolatey" class="headerlink" title="Chocolatey"></a>Chocolatey</h2><p>由于GFW，访问chocolatey软件源存在问题，放弃使用</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/21/scoop/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/08/21/vsRomote/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            vsRomote
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/08/20/windows-terminal/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Windows Terminal</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> kewei
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516124156.jpg" alt="Kewei"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>给我充电吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165413.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/kewei-zju/PicBed/data/20200516165414.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['书声读落三更月，笔阵横开万里云', '驰笔常苦夏日短，展卷不厌冬夜长', '术业宜从勤学起，韶华不为少年留'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
